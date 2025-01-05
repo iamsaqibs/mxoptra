@@ -1,0 +1,8605 @@
+
+Get a list of customer locations
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/locations
+Receive a list of customer locations
+Request
+
+Query Parameters
+
+isVerified
+boolean
+filter by isVerified
+limit
+integer
+The number of results to return.
+>= 1
+<= 200
+Default:
+20
+offset
+integer
+How many records to skip. 0 by default
+>= 1
+Example:
+3
+Responses
+
+200
+400
+A list of locations corresponding with the requested page. The locations are sorted by created ascending (newest records last). If the offset parameter is greater than the number of total records, the method returns an empty list.
+Body
+
+
+
+application/json
+
+
+data
+array[LocationSummary]
+A short version of the location model to be used in list methods like GET /locations
+referenceNumber
+string
+Example:
+abc123
+name
+string
+Example:
+Spring fountains Inc.
+address
+string
+Example:
+55 Springs road, BR1 4FG, Brighton
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+postcode
+string
+Example:
+BR1 4FG
+latitude
+number
+longitude
+number
+clientName
+string
+Example:
+null
+isVerified
+boolean
+isValid
+boolean
+created
+string<date-time>
+The datetime when this records was created.
+updated
+string<date-time>
+The datetime when this record was last updated.
+offset
+integer
+
+_links
+PagingLinks
+API implements pagination via links in this object. If there is a "next" link - you can call API via that link to get the next page of results. If you are on the last page, there will be no "next" link in this object.
+prev
+string
+Relative URL of the previous page of results. Use this to navigate back to the previous page.Show all...
+Example:
+/orders?offset=20
+next
+string
+Relative URL of the next page of results. Use this to navigate to the next page.Show all...
+Example:
+/orders?offset=40
+Token
+:
+
+isVerified
+:
+
+
+select an option
+
+limit
+:
+
+offset
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/locations \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": [
+    {
+      "referenceNumber": "abc123",
+      "name": "Spring fountains Inc.",
+      "address": "55 Springs road, BR1 4FG, Brighton",
+      "w3wAddress": "///rival.mirror.helps",
+      "postcode": "BR1 4FG",
+      "latitude": 0,
+      "longitude": 0,
+      "clientName": "null",
+      "isVerified": true,
+      "isValid": true,
+      "created": "2019-08-24T14:15:22Z",
+      "updated": "2019-08-24T14:15:22Z"
+    }
+  ],
+  "offset": 0,
+  "_links": {
+    "prev": "/orders?offset=20",
+    "next": "/orders?offset=40"
+  }
+}
+
+
+
+
+Create a customer location
+POST
+https://yourmaxoptraaccount.maxoptra.com/api/v6/locations
+Create a location
+Request
+
+Body
+
+
+
+application/json
+
+A detailed view of a single customer location
+referenceNumber
+string
+required
+Example:
+abc123
+name
+string
+required
+Example:
+Spring fountains Inc.
+address
+string
+required
+Example:
+55 Springs road, BR1 4FG, Brighton
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+postcode
+string
+Example:
+BR1 4FG
+latitude
+number
+longitude
+number
+description
+string
+clientName
+string
+Example:
+null
+primaryTelephone
+string
+secondaryTelephone
+string
+email
+string
+website
+string
+
+settings
+object
+allowSMS
+boolean
+allowEmail
+boolean
+fixedTimePerAddress
+number
+fixedTimePerOrder
+number
+timePerCapacityDelivery
+number
+preferredDriverReferences
+array[string]
+vehicleRequirementsReferences
+array[string]
+
+availability
+object
+When creating or updating, if default is provided, all days that are not specified explicitly receive the default window.Show all...
+
+monday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+tuesday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+wednesday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+thursday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+friday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+saturday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+sunday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+holiday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+default
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+created
+string<date-time>
+The datetime when this records was created.
+updated
+string<date-time>
+The datetime when this record was last updated.
+Responses
+
+200
+400
+Location successfully created.
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+
+data
+Location
+A detailed view of a single customer location
+referenceNumber
+string
+required
+Example:
+abc123
+name
+string
+required
+Example:
+Spring fountains Inc.
+address
+string
+required
+Example:
+55 Springs road, BR1 4FG, Brighton
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+postcode
+string
+Example:
+BR1 4FG
+latitude
+number
+longitude
+number
+isVerified
+boolean
+isValid
+boolean
+description
+string
+clientName
+string
+Example:
+null
+primaryTelephone
+string
+secondaryTelephone
+string
+email
+string
+website
+string
+
+settings
+object
+
+availability
+object
+When creating or updating, if default is provided, all days that are not specified explicitly receive the default window.Show all...
+created
+string<date-time>
+The datetime when this records was created.
+updated
+string<date-time>
+The datetime when this record was last updated.
+Token
+:
+
+
+{
+  "referenceNumber": "abc123",
+  "name": "Spring fountains Inc.",
+  "address": "55 Springs road, BR1 4FG, Brighton",
+  "w3wAddress": "///rival.mirror.helps",
+  "postcode": "BR1 4FG",
+  "latitude": 0,
+  "longitude": 0,
+  "description": "string",
+  "clientName": "null",
+  "primaryTelephone": "string",
+  "secondaryTelephone": "string",
+  "email": "string",
+  "website": "string",
+  "settings": {
+    "allowSMS": true,
+    "allowEmail": true,
+    "fixedTimePerAddress": 0,
+    "fixedTimePerOrder": 0,
+    "timePerCapacityDelivery": 0,
+    "preferredDriverReferences": [
+      "string"
+    ],
+    "vehicleRequirementsReferences": [
+      "string"
+    ]
+  },
+  "availability": {
+    "monday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "tuesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "wednesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "thursday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "friday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "saturday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "sunday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "holiday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "default": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  },
+  "created": "2019-08-24T14:15:22Z",
+  "updated": "2019-08-24T14:15:22Z"
+}
+Send API Request
+
+
+Live Server
+
+curl --request POST \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/locations \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "referenceNumber": "abc123",
+  "name": "Spring fountains Inc.",
+  "address": "55 Springs road, BR1 4FG, Brighton",
+  "w3wAddress": "///rival.mirror.helps",
+  "postcode": "BR1 4FG",
+  "latitude": 0,
+  "longitude": 0,
+  "description": "string",
+  "clientName": "null",
+  "primaryTelephone": "string",
+  "secondaryTelephone": "string",
+  "email": "string",
+  "website": "string",
+  "settings": {
+    "allowSMS": true,
+    "allowEmail": true,
+    "fixedTimePerAddress": 0,
+    "fixedTimePerOrder": 0,
+    "timePerCapacityDelivery": 0,
+    "preferredDriverReferences": [
+      "string"
+    ],
+    "vehicleRequirementsReferences": [
+      "string"
+    ]
+  },
+  "availability": {
+    "monday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "tuesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "wednesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "thursday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "friday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "saturday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "sunday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "holiday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "default": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  },
+  "created": "2019-08-24T14:15:22Z",
+  "updated": "2019-08-24T14:15:22Z"
+}'
+{
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ],
+  "data": {
+    "referenceNumber": "abc123",
+    "name": "Spring fountains Inc.",
+    "address": "55 Springs road, BR1 4FG, Brighton",
+    "w3wAddress": "///rival.mirror.helps",
+    "postcode": "BR1 4FG",
+    "latitude": 0,
+    "longitude": 0,
+    "isVerified": true,
+    "isValid": true,
+    "description": "string",
+    "clientName": "null",
+    "primaryTelephone": "string",
+    "secondaryTelephone": "string",
+    "email": "string",
+    "website": "string",
+    "settings": {
+      "allowSMS": true,
+      "allowEmail": true,
+      "fixedTimePerAddress": 0,
+      "fixedTimePerOrder": 0,
+      "timePerCapacityDelivery": 0,
+      "preferredDriverReferences": [
+        "string"
+      ],
+      "preferredDriverNames": [
+        "string"
+      ],
+      "vehicleRequirementsReferences": [
+        "string"
+      ]
+    },
+    "availability": {
+      "monday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "tuesday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "wednesday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "thursday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "friday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "saturday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "sunday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "holiday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "default": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      }
+    },
+    "created": "2019-08-24T14:15:22Z",
+    "updated": "2019-08-24T14:15:22Z"
+  }
+}
+
+Get customer location details
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/locations/{reference}
+Returns details of a particular location by it's reference.
+Request
+
+Path Parameters
+
+reference
+string
+required
+The location's reference
+Responses
+
+200
+404
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+Location
+A detailed view of a single customer location
+referenceNumber
+string
+required
+Example:
+abc123
+name
+string
+required
+Example:
+Spring fountains Inc.
+address
+string
+required
+Example:
+55 Springs road, BR1 4FG, Brighton
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+postcode
+string
+Example:
+BR1 4FG
+latitude
+number
+longitude
+number
+isVerified
+boolean
+isValid
+boolean
+description
+string
+clientName
+string
+Example:
+null
+primaryTelephone
+string
+secondaryTelephone
+string
+email
+string
+website
+string
+
+settings
+object
+
+availability
+object
+When creating or updating, if default is provided, all days that are not specified explicitly receive the default window.Show all...
+created
+string<date-time>
+The datetime when this records was created.
+updated
+string<date-time>
+The datetime when this record was last updated.
+Token
+:
+
+reference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/locations/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "referenceNumber": "abc123",
+    "name": "Spring fountains Inc.",
+    "address": "55 Springs road, BR1 4FG, Brighton",
+    "w3wAddress": "///rival.mirror.helps",
+    "postcode": "BR1 4FG",
+    "latitude": 0,
+    "longitude": 0,
+    "isVerified": true,
+    "isValid": true,
+    "description": "string",
+    "clientName": "null",
+    "primaryTelephone": "string",
+    "secondaryTelephone": "string",
+    "email": "string",
+    "website": "string",
+    "settings": {
+      "allowSMS": true,
+      "allowEmail": true,
+      "fixedTimePerAddress": 0,
+      "fixedTimePerOrder": 0,
+      "timePerCapacityDelivery": 0,
+      "preferredDriverReferences": [
+        "string"
+      ],
+      "preferredDriverNames": [
+        "string"
+      ],
+      "vehicleRequirementsReferences": [
+        "string"
+      ]
+    },
+    "availability": {
+      "monday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "tuesday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "wednesday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "thursday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "friday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "saturday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "sunday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "holiday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "default": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      }
+    },
+    "created": "2019-08-24T14:15:22Z",
+    "updated": "2019-08-24T14:15:22Z"
+  }
+}
+
+
+Partially update a customer location
+PATCH
+https://yourmaxoptraaccount.maxoptra.com/api/v6/locations/{reference}
+A partial update of a location. Only updates the fields that are specified. None of the fields are mandatory.
+Request
+
+Path Parameters
+
+reference
+string
+required
+The location's reference
+Body
+
+
+
+application/json
+
+A model used to send location details to the API to create or update a location.
+referenceNumber
+string
+Example:
+abc123
+name
+string
+Example:
+Spring fountains Inc.
+address
+string
+Example:
+55 Springs road, BR1 4FG, Brighton
+postcode
+string
+Example:
+BR1 4FG
+latitude
+number
+longitude
+number
+description
+string
+clientName
+string
+Example:
+null
+primaryTelephone
+string
+secondaryTelephone
+string
+email
+string
+website
+string
+
+settings
+object
+allowSMS
+boolean
+allowEmail
+boolean
+fixedTimePerAddress
+number
+fixedTimePerOrder
+number
+timePerCapacityDelivery
+number
+preferredDriverReferences
+array[string]
+vehicleRequirementsReferences
+array[string]
+
+availability
+object
+
+default
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+monday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+tuesday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+wednesday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+thursday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+friday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+saturday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+sunday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+holiday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+Responses
+
+200
+400
+404
+The location has been succesfully updated
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+Location
+A detailed view of a single customer location
+referenceNumber
+string
+required
+Example:
+abc123
+name
+string
+required
+Example:
+Spring fountains Inc.
+address
+string
+required
+Example:
+55 Springs road, BR1 4FG, Brighton
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+postcode
+string
+Example:
+BR1 4FG
+latitude
+number
+longitude
+number
+isVerified
+boolean
+isValid
+boolean
+description
+string
+clientName
+string
+Example:
+null
+primaryTelephone
+string
+secondaryTelephone
+string
+email
+string
+website
+string
+
+settings
+object
+
+availability
+object
+When creating or updating, if default is provided, all days that are not specified explicitly receive the default window.Show all...
+created
+string<date-time>
+The datetime when this records was created.
+updated
+string<date-time>
+The datetime when this record was last updated.
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+Token
+:
+
+reference*
+:
+
+
+{
+  "referenceNumber": "abc123",
+  "name": "Spring fountains Inc.",
+  "address": "55 Springs road, BR1 4FG, Brighton",
+  "postcode": "BR1 4FG",
+  "latitude": 0,
+  "longitude": 0,
+  "description": "string",
+  "clientName": "null",
+  "primaryTelephone": "string",
+  "secondaryTelephone": "string",
+  "email": "string",
+  "website": "string",
+  "settings": {
+    "allowSMS": true,
+    "allowEmail": true,
+    "fixedTimePerAddress": 0,
+    "fixedTimePerOrder": 0,
+    "timePerCapacityDelivery": 0,
+    "preferredDriverReferences": [
+      "string"
+    ],
+    "vehicleRequirementsReferences": [
+      "string"
+    ]
+  },
+  "availability": {
+    "default": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "monday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "tuesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "wednesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "thursday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "friday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "saturday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "sunday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "holiday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  }
+}
+Send API Request
+
+
+Live Server
+
+curl --request PATCH \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/locations/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "referenceNumber": "abc123",
+  "name": "Spring fountains Inc.",
+  "address": "55 Springs road, BR1 4FG, Brighton",
+  "postcode": "BR1 4FG",
+  "latitude": 0,
+  "longitude": 0,
+  "description": "string",
+  "clientName": "null",
+  "primaryTelephone": "string",
+  "secondaryTelephone": "string",
+  "email": "string",
+  "website": "string",
+  "settings": {
+    "allowSMS": true,
+    "allowEmail": true,
+    "fixedTimePerAddress": 0,
+    "fixedTimePerOrder": 0,
+    "timePerCapacityDelivery": 0,
+    "preferredDriverReferences": [
+      "string"
+    ],
+    "vehicleRequirementsReferences": [
+      "string"
+    ]
+  },
+  "availability": {
+    "default": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "monday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "tuesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "wednesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "thursday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "friday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "saturday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "sunday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "holiday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  }
+}'
+{
+  "data": {
+    "referenceNumber": "abc123",
+    "name": "Spring fountains Inc.",
+    "address": "55 Springs road, BR1 4FG, Brighton",
+    "w3wAddress": "///rival.mirror.helps",
+    "postcode": "BR1 4FG",
+    "latitude": 0,
+    "longitude": 0,
+    "isVerified": true,
+    "isValid": true,
+    "description": "string",
+    "clientName": "null",
+    "primaryTelephone": "string",
+    "secondaryTelephone": "string",
+    "email": "string",
+    "website": "string",
+    "settings": {
+      "allowSMS": true,
+      "allowEmail": true,
+      "fixedTimePerAddress": 0,
+      "fixedTimePerOrder": 0,
+      "timePerCapacityDelivery": 0,
+      "preferredDriverReferences": [
+        "string"
+      ],
+      "preferredDriverNames": [
+        "string"
+      ],
+      "vehicleRequirementsReferences": [
+        "string"
+      ]
+    },
+    "availability": {
+      "monday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "tuesday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "wednesday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "thursday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "friday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "saturday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "sunday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "holiday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "default": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      }
+    },
+    "created": "2019-08-24T14:15:22Z",
+    "updated": "2019-08-24T14:15:22Z"
+  },
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ]
+}
+
+
+Delete a customer location
+DELETE
+https://yourmaxoptraaccount.maxoptra.com/api/v6/locations/{reference}
+Delete a location
+Request
+
+Path Parameters
+
+reference
+string
+required
+The location's reference
+Responses
+
+200
+404
+412
+The location was deleted
+Token
+:
+
+reference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request DELETE \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/locations/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+
+
+Update a customer location
+PUT
+https://yourmaxoptraaccount.maxoptra.com/api/v6/locations/{reference}
+Update a location
+Request
+
+Path Parameters
+
+reference
+string
+required
+The location's reference
+Body
+
+
+
+application/json
+
+A detailed view of a single customer location
+referenceNumber
+string
+required
+Example:
+abc123
+name
+string
+required
+Example:
+Spring fountains Inc.
+address
+string
+required
+Example:
+55 Springs road, BR1 4FG, Brighton
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+postcode
+string
+Example:
+BR1 4FG
+latitude
+number
+longitude
+number
+description
+string
+clientName
+string
+Example:
+null
+primaryTelephone
+string
+secondaryTelephone
+string
+email
+string
+website
+string
+
+settings
+object
+allowSMS
+boolean
+allowEmail
+boolean
+fixedTimePerAddress
+number
+fixedTimePerOrder
+number
+timePerCapacityDelivery
+number
+preferredDriverReferences
+array[string]
+vehicleRequirementsReferences
+array[string]
+
+availability
+object
+When creating or updating, if default is provided, all days that are not specified explicitly receive the default window.Show all...
+
+monday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+tuesday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+wednesday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+thursday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+friday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+saturday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+sunday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+holiday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+default
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+created
+string<date-time>
+The datetime when this records was created.
+updated
+string<date-time>
+The datetime when this record was last updated.
+Responses
+
+200
+400
+404
+Location successfully updated
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+
+data
+Location
+A detailed view of a single customer location
+referenceNumber
+string
+required
+Example:
+abc123
+name
+string
+required
+Example:
+Spring fountains Inc.
+address
+string
+required
+Example:
+55 Springs road, BR1 4FG, Brighton
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+postcode
+string
+Example:
+BR1 4FG
+latitude
+number
+longitude
+number
+isVerified
+boolean
+isValid
+boolean
+description
+string
+clientName
+string
+Example:
+null
+primaryTelephone
+string
+secondaryTelephone
+string
+email
+string
+website
+string
+
+settings
+object
+
+availability
+object
+When creating or updating, if default is provided, all days that are not specified explicitly receive the default window.Show all...
+created
+string<date-time>
+The datetime when this records was created.
+updated
+string<date-time>
+The datetime when this record was last updated.
+Token
+:
+
+reference*
+:
+
+
+{
+  "referenceNumber": "abc123",
+  "name": "Spring fountains Inc.",
+  "address": "55 Springs road, BR1 4FG, Brighton",
+  "w3wAddress": "///rival.mirror.helps",
+  "postcode": "BR1 4FG",
+  "latitude": 0,
+  "longitude": 0,
+  "description": "string",
+  "clientName": "null",
+  "primaryTelephone": "string",
+  "secondaryTelephone": "string",
+  "email": "string",
+  "website": "string",
+  "settings": {
+    "allowSMS": true,
+    "allowEmail": true,
+    "fixedTimePerAddress": 0,
+    "fixedTimePerOrder": 0,
+    "timePerCapacityDelivery": 0,
+    "preferredDriverReferences": [
+      "string"
+    ],
+    "vehicleRequirementsReferences": [
+      "string"
+    ]
+  },
+  "availability": {
+    "monday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "tuesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "wednesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "thursday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "friday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "saturday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "sunday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "holiday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "default": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  },
+  "created": "2019-08-24T14:15:22Z",
+  "updated": "2019-08-24T14:15:22Z"
+}
+Send API Request
+
+
+Live Server
+
+curl --request PUT \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/locations/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "referenceNumber": "abc123",
+  "name": "Spring fountains Inc.",
+  "address": "55 Springs road, BR1 4FG, Brighton",
+  "w3wAddress": "///rival.mirror.helps",
+  "postcode": "BR1 4FG",
+  "latitude": 0,
+  "longitude": 0,
+  "description": "string",
+  "clientName": "null",
+  "primaryTelephone": "string",
+  "secondaryTelephone": "string",
+  "email": "string",
+  "website": "string",
+  "settings": {
+    "allowSMS": true,
+    "allowEmail": true,
+    "fixedTimePerAddress": 0,
+    "fixedTimePerOrder": 0,
+    "timePerCapacityDelivery": 0,
+    "preferredDriverReferences": [
+      "string"
+    ],
+    "vehicleRequirementsReferences": [
+      "string"
+    ]
+  },
+  "availability": {
+    "monday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "tuesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "wednesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "thursday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "friday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "saturday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "sunday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "holiday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "default": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  },
+  "created": "2019-08-24T14:15:22Z",
+  "updated": "2019-08-24T14:15:22Z"
+}'
+{
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ],
+  "data": {
+    "referenceNumber": "abc123",
+    "name": "Spring fountains Inc.",
+    "address": "55 Springs road, BR1 4FG, Brighton",
+    "w3wAddress": "///rival.mirror.helps",
+    "postcode": "BR1 4FG",
+    "latitude": 0,
+    "longitude": 0,
+    "isVerified": true,
+    "isValid": true,
+    "description": "string",
+    "clientName": "null",
+    "primaryTelephone": "string",
+    "secondaryTelephone": "string",
+    "email": "string",
+    "website": "string",
+    "settings": {
+      "allowSMS": true,
+      "allowEmail": true,
+      "fixedTimePerAddress": 0,
+      "fixedTimePerOrder": 0,
+      "timePerCapacityDelivery": 0,
+      "preferredDriverReferences": [
+        "string"
+      ],
+      "preferredDriverNames": [
+        "string"
+      ],
+      "vehicleRequirementsReferences": [
+        "string"
+      ]
+    },
+    "availability": {
+      "monday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "tuesday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "wednesday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "thursday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "friday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "saturday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "sunday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "holiday": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      },
+      "default": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      }
+    },
+    "created": "2019-08-24T14:15:22Z",
+    "updated": "2019-08-24T14:15:22Z"
+  }
+}
+
+Get a list of distribution centres
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/distributionCentres
+Request
+
+Query Parameters
+
+limit
+boolean
+How many records to return
+offset
+integer
+How many records to skip
+Responses
+
+200
+List of distribution centeres in account
+Body
+
+
+
+application/json
+
+
+data
+array[DCSummary]
+referenceNumber
+string
+name
+string
+address
+string
+The address of the distribution centre.
+
+_links
+PagingLinks
+API implements pagination via links in this object. If there is a "next" link - you can call API via that link to get the next page of results. If you are on the last page, there will be no "next" link in this object.
+prev
+string
+Relative URL of the previous page of results. Use this to navigate back to the previous page.Show all...
+Example:
+/orders?offset=20
+next
+string
+Relative URL of the next page of results. Use this to navigate to the next page.Show all...
+Example:
+/orders?offset=40
+offset
+integer
+Token
+:
+
+limit
+:
+
+
+select an option
+
+offset
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/distributionCentres \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": [
+    {
+      "referenceNumber": "string",
+      "name": "string",
+      "address": "string"
+    }
+  ],
+  "_links": {
+    "prev": "/orders?offset=20",
+    "next": "/orders?offset=40"
+  },
+  "offset": 0
+}
+
+
+Get a list of drivers
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers
+Get a list of drivers
+Request
+
+Query Parameters
+
+dcReference
+string
+DC to filter the drivers by
+limit
+integer
+How many records to return
+>= 1
+<= 200
+offset
+integer
+How many records to skip
+>= 0
+Responses
+
+200
+400
+OK
+Body
+
+
+
+application/json
+
+
+data
+array[DriverSummary]
+referenceNumber
+string
+name
+string
+assignedVehicleReference
+string
+assignedVehicleName
+string
+distributionCentreReference
+string
+distributionCentreName
+string
+offset
+integer
+How many records were skipped
+
+_links
+PagingLinks
+API implements pagination via links in this object. If there is a "next" link - you can call API via that link to get the next page of results. If you are on the last page, there will be no "next" link in this object.
+prev
+string
+Relative URL of the previous page of results. Use this to navigate back to the previous page.Show all...
+Example:
+/orders?offset=20
+next
+string
+Relative URL of the next page of results. Use this to navigate to the next page.Show all...
+Example:
+/orders?offset=40
+Token
+:
+
+dcReference
+:
+
+limit
+:
+
+offset
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": [
+    {
+      "referenceNumber": "string",
+      "name": "string",
+      "assignedVehicleReference": "string",
+      "assignedVehicleName": "string",
+      "distributionCentreReference": "string",
+      "distributionCentreName": "string"
+    }
+  ],
+  "offset": 0,
+  "_links": {
+    "prev": "/orders?offset=20",
+    "next": "/orders?offset=40"
+  }
+}
+
+Create a driver
+POST
+https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers
+Create a new driver
+Request
+
+Body
+
+
+
+application/json
+
+A model containing all driver details
+referenceNumber
+string
+required
+name
+string
+required
+comment
+string
+telephone
+string
+assignedVehicleReference
+string
+costPerHour
+number<float>
+required
+>= 0
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+territories
+array[string]
+A list of territory references
+startOfDayLocation
+string
+Allowed values:
+DC
+ADDRESS
+Default:
+DC
+startOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreStart
+string
+Allowed values:
+NO
+TO_RELOAD
+WITH_DELIVERIES
+Default:
+TO_RELOAD
+endOfDayLocation
+string
+Allowed values:
+DC
+LAST_ORDER
+ADDRESS
+Default:
+DC
+endOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreEnd
+string
+Allowed values:
+WITH_COLLECTIONS
+NO
+Default:
+NO
+drivingLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+runDurationLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+dutyTimeLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+
+availability
+object
+When creating or updating a driver use the following rules: All fields are optional. Set default availability to apply to all non-specified days. Set specific days to override the default. If not default is set and a day is not set, it will have no availability.
+
+monday
+DriverAvailabilityDay
+A single day of driver availability
+
+tuesday
+DriverAvailabilityDay
+A single day of driver availability
+
+wednesday
+DriverAvailabilityDay
+A single day of driver availability
+
+thursday
+DriverAvailabilityDay
+A single day of driver availability
+
+friday
+DriverAvailabilityDay
+A single day of driver availability
+
+saturday
+DriverAvailabilityDay
+A single day of driver availability
+
+sunday
+DriverAvailabilityDay
+A single day of driver availability
+
+default
+DriverAvailabilityDay
+A single day of driver availability
+
+holiday
+DriverAvailabilityDay
+A single day of driver availability
+Responses
+
+200
+400
+Driver successfully created
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+
+data
+DriverDetails
+A model containing all driver details
+referenceNumber
+string
+required
+name
+string
+required
+comment
+string
+telephone
+string
+assignedVehicleReference
+string
+assignedVehicleName
+string
+costPerHour
+number<float>
+required
+>= 0
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+territories
+array[string]
+A list of territory references
+startOfDayLocation
+string
+Allowed values:
+DC
+ADDRESS
+Default:
+DC
+startOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreStart
+string
+Allowed values:
+NO
+TO_RELOAD
+WITH_DELIVERIES
+Default:
+TO_RELOAD
+endOfDayLocation
+string
+Allowed values:
+DC
+LAST_ORDER
+ADDRESS
+Default:
+DC
+endOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreEnd
+string
+Allowed values:
+WITH_COLLECTIONS
+NO
+Default:
+NO
+drivingLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+runDurationLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+dutyTimeLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+
+availability
+object
+When creating or updating a driver use the following rules: All fields are optional. Set default availability to apply to all non-specified days. Set specific days to override the default. If not default is set and a day is not set, it will have no availability.
+Token
+:
+
+
+{
+  "referenceNumber": "string",
+  "name": "string",
+  "comment": "string",
+  "telephone": "string",
+  "assignedVehicleReference": "string",
+  "costPerHour": 0,
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string",
+  "territories": [
+    "string"
+  ],
+  "startOfDayLocation": "DC",
+  "startOfDayAddress": "string",
+  "visitDistributionCentreStart": "TO_RELOAD",
+  "endOfDayLocation": "DC",
+  "endOfDayAddress": "string",
+  "visitDistributionCentreEnd": "NO",
+  "drivingLimit": 0,
+  "runDurationLimit": 0,
+  "dutyTimeLimit": 0,
+  "availability": {
+    "monday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "tuesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "wednesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "thursday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "friday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "saturday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "sunday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "default": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "holiday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    }
+  }
+}
+Send API Request
+
+
+Live Server
+
+curl --request POST \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "referenceNumber": "string",
+  "name": "string",
+  "comment": "string",
+  "telephone": "string",
+  "assignedVehicleReference": "string",
+  "costPerHour": 0,
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string",
+  "territories": [
+    "string"
+  ],
+  "startOfDayLocation": "DC",
+  "startOfDayAddress": "string",
+  "visitDistributionCentreStart": "TO_RELOAD",
+  "endOfDayLocation": "DC",
+  "endOfDayAddress": "string",
+  "visitDistributionCentreEnd": "NO",
+  "drivingLimit": 0,
+  "runDurationLimit": 0,
+  "dutyTimeLimit": 0,
+  "availability": {
+    "monday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "tuesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "wednesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "thursday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "friday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "saturday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "sunday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "default": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "holiday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    }
+  }
+}'
+{
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ],
+  "data": {
+    "referenceNumber": "string",
+    "name": "string",
+    "comment": "string",
+    "telephone": "string",
+    "assignedVehicleReference": "string",
+    "assignedVehicleName": "string",
+    "costPerHour": 0,
+    "distributionCentreReference": "string",
+    "distributionCentreName": "string",
+    "territories": [
+      "string"
+    ],
+    "startOfDayLocation": "DC",
+    "startOfDayAddress": "string",
+    "visitDistributionCentreStart": "TO_RELOAD",
+    "endOfDayLocation": "DC",
+    "endOfDayAddress": "string",
+    "visitDistributionCentreEnd": "NO",
+    "drivingLimit": 0,
+    "runDurationLimit": 0,
+    "dutyTimeLimit": 0,
+    "availability": {
+      "monday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "tuesday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "wednesday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "thursday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "friday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "saturday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "sunday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "default": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "holiday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      }
+    }
+  }
+}
+
+
+Get driver details
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers/{reference}
+Get details of a single driver by reference.
+Request
+
+Path Parameters
+
+reference
+string
+required
+Responses
+
+200
+404
+OK
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+DriverDetails
+A model containing all driver details
+referenceNumber
+string
+required
+name
+string
+required
+comment
+string
+telephone
+string
+assignedVehicleReference
+string
+assignedVehicleName
+string
+costPerHour
+number<float>
+required
+>= 0
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+territories
+array[string]
+A list of territory references
+startOfDayLocation
+string
+Allowed values:
+DC
+ADDRESS
+Default:
+DC
+startOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreStart
+string
+Allowed values:
+NO
+TO_RELOAD
+WITH_DELIVERIES
+Default:
+TO_RELOAD
+endOfDayLocation
+string
+Allowed values:
+DC
+LAST_ORDER
+ADDRESS
+Default:
+DC
+endOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreEnd
+string
+Allowed values:
+WITH_COLLECTIONS
+NO
+Default:
+NO
+drivingLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+runDurationLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+dutyTimeLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+
+availability
+object
+When creating or updating a driver use the following rules: All fields are optional. Set default availability to apply to all non-specified days. Set specific days to override the default. If not default is set and a day is not set, it will have no availability.
+Token
+:
+
+reference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "referenceNumber": "string",
+    "name": "string",
+    "comment": "string",
+    "telephone": "string",
+    "assignedVehicleReference": "string",
+    "assignedVehicleName": "string",
+    "costPerHour": 0,
+    "distributionCentreReference": "string",
+    "distributionCentreName": "string",
+    "territories": [
+      "string"
+    ],
+    "startOfDayLocation": "DC",
+    "startOfDayAddress": "string",
+    "visitDistributionCentreStart": "TO_RELOAD",
+    "endOfDayLocation": "DC",
+    "endOfDayAddress": "string",
+    "visitDistributionCentreEnd": "NO",
+    "drivingLimit": 0,
+    "runDurationLimit": 0,
+    "dutyTimeLimit": 0,
+    "availability": {
+      "monday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "tuesday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "wednesday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "thursday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "friday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "saturday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "sunday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "default": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "holiday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      }
+    }
+  }
+}
+
+
+Partially update a driver
+PATCH
+https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers/{reference}
+Update certain fields of a driver. All fields are optional, only specified fields are updated.
+Request
+
+Path Parameters
+
+reference
+string
+required
+Body
+
+
+
+application/json
+
+A model containing all driver details
+referenceNumber
+string
+required
+name
+string
+required
+comment
+string
+telephone
+string
+assignedVehicleReference
+string
+costPerHour
+number<float>
+required
+>= 0
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+territories
+array[string]
+A list of territory references
+startOfDayLocation
+string
+Allowed values:
+DC
+ADDRESS
+Default:
+DC
+startOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreStart
+string
+Allowed values:
+NO
+TO_RELOAD
+WITH_DELIVERIES
+Default:
+TO_RELOAD
+endOfDayLocation
+string
+Allowed values:
+DC
+LAST_ORDER
+ADDRESS
+Default:
+DC
+endOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreEnd
+string
+Allowed values:
+WITH_COLLECTIONS
+NO
+Default:
+NO
+drivingLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+runDurationLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+dutyTimeLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+
+availability
+object
+When creating or updating a driver use the following rules: All fields are optional. Set default availability to apply to all non-specified days. Set specific days to override the default. If not default is set and a day is not set, it will have no availability.
+
+monday
+DriverAvailabilityDay
+A single day of driver availability
+
+tuesday
+DriverAvailabilityDay
+A single day of driver availability
+
+wednesday
+DriverAvailabilityDay
+A single day of driver availability
+
+thursday
+DriverAvailabilityDay
+A single day of driver availability
+
+friday
+DriverAvailabilityDay
+A single day of driver availability
+
+saturday
+DriverAvailabilityDay
+A single day of driver availability
+
+sunday
+DriverAvailabilityDay
+A single day of driver availability
+
+default
+DriverAvailabilityDay
+A single day of driver availability
+
+holiday
+DriverAvailabilityDay
+A single day of driver availability
+Responses
+
+200
+400
+404
+The driver was updated successfully. Returns the details of the updated record.
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+DriverDetails
+A model containing all driver details
+referenceNumber
+string
+required
+name
+string
+required
+comment
+string
+telephone
+string
+assignedVehicleReference
+string
+assignedVehicleName
+string
+costPerHour
+number<float>
+required
+>= 0
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+territories
+array[string]
+A list of territory references
+startOfDayLocation
+string
+Allowed values:
+DC
+ADDRESS
+Default:
+DC
+startOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreStart
+string
+Allowed values:
+NO
+TO_RELOAD
+WITH_DELIVERIES
+Default:
+TO_RELOAD
+endOfDayLocation
+string
+Allowed values:
+DC
+LAST_ORDER
+ADDRESS
+Default:
+DC
+endOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreEnd
+string
+Allowed values:
+WITH_COLLECTIONS
+NO
+Default:
+NO
+drivingLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+runDurationLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+dutyTimeLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+
+availability
+object
+When creating or updating a driver use the following rules: All fields are optional. Set default availability to apply to all non-specified days. Set specific days to override the default. If not default is set and a day is not set, it will have no availability.
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+Token
+:
+
+reference*
+:
+
+
+{
+  "referenceNumber": "string",
+  "name": "string",
+  "comment": "string",
+  "telephone": "string",
+  "assignedVehicleReference": "string",
+  "costPerHour": 0,
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string",
+  "territories": [
+    "string"
+  ],
+  "startOfDayLocation": "DC",
+  "startOfDayAddress": "string",
+  "visitDistributionCentreStart": "TO_RELOAD",
+  "endOfDayLocation": "DC",
+  "endOfDayAddress": "string",
+  "visitDistributionCentreEnd": "NO",
+  "drivingLimit": 0,
+  "runDurationLimit": 0,
+  "dutyTimeLimit": 0,
+  "availability": {
+    "monday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "tuesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "wednesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "thursday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "friday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "saturday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "sunday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "default": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "holiday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    }
+  }
+}
+Send API Request
+
+
+Live Server
+
+curl --request PATCH \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "referenceNumber": "string",
+  "name": "string",
+  "comment": "string",
+  "telephone": "string",
+  "assignedVehicleReference": "string",
+  "costPerHour": 0,
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string",
+  "territories": [
+    "string"
+  ],
+  "startOfDayLocation": "DC",
+  "startOfDayAddress": "string",
+  "visitDistributionCentreStart": "TO_RELOAD",
+  "endOfDayLocation": "DC",
+  "endOfDayAddress": "string",
+  "visitDistributionCentreEnd": "NO",
+  "drivingLimit": 0,
+  "runDurationLimit": 0,
+  "dutyTimeLimit": 0,
+  "availability": {
+    "monday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "tuesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "wednesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "thursday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "friday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "saturday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "sunday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "default": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "holiday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    }
+  }
+}'
+{
+  "data": {
+    "referenceNumber": "string",
+    "name": "string",
+    "comment": "string",
+    "telephone": "string",
+    "assignedVehicleReference": "string",
+    "assignedVehicleName": "string",
+    "costPerHour": 0,
+    "distributionCentreReference": "string",
+    "distributionCentreName": "string",
+    "territories": [
+      "string"
+    ],
+    "startOfDayLocation": "DC",
+    "startOfDayAddress": "string",
+    "visitDistributionCentreStart": "TO_RELOAD",
+    "endOfDayLocation": "DC",
+    "endOfDayAddress": "string",
+    "visitDistributionCentreEnd": "NO",
+    "drivingLimit": 0,
+    "runDurationLimit": 0,
+    "dutyTimeLimit": 0,
+    "availability": {
+      "monday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "tuesday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "wednesday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "thursday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "friday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "saturday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "sunday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "default": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "holiday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      }
+    }
+  },
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ]
+}
+
+Delete a driver
+DELETE
+https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers/{reference}
+Delete a driver
+Request
+
+Path Parameters
+
+reference
+string
+required
+Responses
+
+200
+404
+412
+Driver was deleted
+Body
+
+
+
+application/json
+
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+Token
+:
+
+reference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request DELETE \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ]
+}
+
+
+Update a driver
+PUT
+https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers/{reference}
+Update a driver by reference
+Request
+
+Path Parameters
+
+reference
+string
+required
+Body
+
+
+
+application/json
+
+A model containing all driver details
+referenceNumber
+string
+required
+name
+string
+required
+comment
+string
+telephone
+string
+assignedVehicleReference
+string
+costPerHour
+number<float>
+required
+>= 0
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+territories
+array[string]
+A list of territory references
+startOfDayLocation
+string
+Allowed values:
+DC
+ADDRESS
+Default:
+DC
+startOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreStart
+string
+Allowed values:
+NO
+TO_RELOAD
+WITH_DELIVERIES
+Default:
+TO_RELOAD
+endOfDayLocation
+string
+Allowed values:
+DC
+LAST_ORDER
+ADDRESS
+Default:
+DC
+endOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreEnd
+string
+Allowed values:
+WITH_COLLECTIONS
+NO
+Default:
+NO
+drivingLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+runDurationLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+dutyTimeLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+
+availability
+object
+When creating or updating a driver use the following rules: All fields are optional. Set default availability to apply to all non-specified days. Set specific days to override the default. If not default is set and a day is not set, it will have no availability.
+
+monday
+DriverAvailabilityDay
+A single day of driver availability
+
+tuesday
+DriverAvailabilityDay
+A single day of driver availability
+
+wednesday
+DriverAvailabilityDay
+A single day of driver availability
+
+thursday
+DriverAvailabilityDay
+A single day of driver availability
+
+friday
+DriverAvailabilityDay
+A single day of driver availability
+
+saturday
+DriverAvailabilityDay
+A single day of driver availability
+
+sunday
+DriverAvailabilityDay
+A single day of driver availability
+
+default
+DriverAvailabilityDay
+A single day of driver availability
+
+holiday
+DriverAvailabilityDay
+A single day of driver availability
+Responses
+
+200
+400
+404
+Successfully udpated
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+
+data
+DriverDetails
+A model containing all driver details
+referenceNumber
+string
+required
+name
+string
+required
+comment
+string
+telephone
+string
+assignedVehicleReference
+string
+assignedVehicleName
+string
+costPerHour
+number<float>
+required
+>= 0
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+territories
+array[string]
+A list of territory references
+startOfDayLocation
+string
+Allowed values:
+DC
+ADDRESS
+Default:
+DC
+startOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreStart
+string
+Allowed values:
+NO
+TO_RELOAD
+WITH_DELIVERIES
+Default:
+TO_RELOAD
+endOfDayLocation
+string
+Allowed values:
+DC
+LAST_ORDER
+ADDRESS
+Default:
+DC
+endOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreEnd
+string
+Allowed values:
+WITH_COLLECTIONS
+NO
+Default:
+NO
+drivingLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+runDurationLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+dutyTimeLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+
+availability
+object
+When creating or updating a driver use the following rules: All fields are optional. Set default availability to apply to all non-specified days. Set specific days to override the default. If not default is set and a day is not set, it will have no availability.
+Token
+:
+
+reference*
+:
+
+
+{
+  "referenceNumber": "string",
+  "name": "string",
+  "comment": "string",
+  "telephone": "string",
+  "assignedVehicleReference": "string",
+  "costPerHour": 0,
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string",
+  "territories": [
+    "string"
+  ],
+  "startOfDayLocation": "DC",
+  "startOfDayAddress": "string",
+  "visitDistributionCentreStart": "TO_RELOAD",
+  "endOfDayLocation": "DC",
+  "endOfDayAddress": "string",
+  "visitDistributionCentreEnd": "NO",
+  "drivingLimit": 0,
+  "runDurationLimit": 0,
+  "dutyTimeLimit": 0,
+  "availability": {
+    "monday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "tuesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "wednesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "thursday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "friday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "saturday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "sunday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "default": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "holiday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    }
+  }
+}
+Send API Request
+
+
+Live Server
+
+curl --request PUT \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/drivers/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "referenceNumber": "string",
+  "name": "string",
+  "comment": "string",
+  "telephone": "string",
+  "assignedVehicleReference": "string",
+  "costPerHour": 0,
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string",
+  "territories": [
+    "string"
+  ],
+  "startOfDayLocation": "DC",
+  "startOfDayAddress": "string",
+  "visitDistributionCentreStart": "TO_RELOAD",
+  "endOfDayLocation": "DC",
+  "endOfDayAddress": "string",
+  "visitDistributionCentreEnd": "NO",
+  "drivingLimit": 0,
+  "runDurationLimit": 0,
+  "dutyTimeLimit": 0,
+  "availability": {
+    "monday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "tuesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "wednesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "thursday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "friday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "saturday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "sunday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "default": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "holiday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    }
+  }
+}'
+{
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ],
+  "data": {
+    "referenceNumber": "string",
+    "name": "string",
+    "comment": "string",
+    "telephone": "string",
+    "assignedVehicleReference": "string",
+    "assignedVehicleName": "string",
+    "costPerHour": 0,
+    "distributionCentreReference": "string",
+    "distributionCentreName": "string",
+    "territories": [
+      "string"
+    ],
+    "startOfDayLocation": "DC",
+    "startOfDayAddress": "string",
+    "visitDistributionCentreStart": "TO_RELOAD",
+    "endOfDayLocation": "DC",
+    "endOfDayAddress": "string",
+    "visitDistributionCentreEnd": "NO",
+    "drivingLimit": 0,
+    "runDurationLimit": 0,
+    "dutyTimeLimit": 0,
+    "availability": {
+      "monday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "tuesday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "wednesday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "thursday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "friday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "saturday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "sunday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "default": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      },
+      "holiday": {
+        "startDay": "SAME_DAY",
+        "startTime": "14:15:22Z",
+        "rigidStart": true,
+        "endDay": "SAME_DAY",
+        "endTime": "14:15:22Z"
+      }
+    }
+  }
+}
+
+Get execution details of an order
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/execution
+Returns execution information for a particular order.
+Request
+
+Path Parameters
+
+orderReference
+string
+required
+the reference of the order
+Responses
+
+200
+401
+404
+Successful response. If the order is not allocated, all fields (except status) will be null.
+Body
+
+
+
+application/json
+
+
+data
+OrderExecutionInfo
+Information about how the order is executed. Includes the order's allocation information, status, real-time ETA, actual and reported times
+orderReferenceNumber
+string
+assignedDriverReference
+string
+assignedDriverName
+string
+assignedVehicleReference
+string
+assignedVehicleName
+string
+plannedArrivalTime
+string<date-time>
+plannedCompletionTime
+string<date-time>
+stopNumber
+integer
+totalStopsInRun
+integer
+eta
+string<date-time>
+factArrivalTimeGPS
+string<date-time>
+factCompletionTimeGPS
+string<date-time>
+factArrivalTimeReported
+string<date-time>
+factCompletionTimeReported
+string<date-time>
+failReason
+string
+failComment
+string
+status
+string
+runNumber
+integer
+Token
+:
+
+orderReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/execution \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "orderReferenceNumber": "string",
+    "assignedDriverReference": "string",
+    "assignedDriverName": "string",
+    "assignedVehicleReference": "string",
+    "assignedVehicleName": "string",
+    "plannedArrivalTime": "2019-08-24T14:15:22Z",
+    "plannedCompletionTime": "2019-08-24T14:15:22Z",
+    "stopNumber": 0,
+    "totalStopsInRun": 0,
+    "eta": "2019-08-24T14:15:22Z",
+    "factArrivalTimeGPS": "2019-08-24T14:15:22Z",
+    "factCompletionTimeGPS": "2019-08-24T14:15:22Z",
+    "factArrivalTimeReported": "2019-08-24T14:15:22Z",
+    "factCompletionTimeReported": "2019-08-24T14:15:22Z",
+    "failReason": "string",
+    "failComment": "string",
+    "status": "string",
+    "runNumber": 0
+  }
+}
+
+
+Get order items for an order
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/items
+A method to return detailed information about the items of an order.
+Request
+
+Path Parameters
+
+orderReference
+string
+required
+The order reference
+Responses
+
+200
+404
+Successful response.
+Body
+
+
+
+application/json
+
+
+data
+OrderItemsInfo
+An object containing items information for a particular order.
+orderReferenceNumber
+string
+
+orderItems
+array[OrderItem]
+An object that represents an order item.
+plannedItemsCount
+integer
+factItemsCount
+integer
+ItemsStatus
+string
+Allowed values:
+IN_FULL
+PARTIAL
+UNSUCCESSFUL
+Token
+:
+
+orderReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/items \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "orderReferenceNumber": "string",
+    "orderItems": [
+      {
+        "itemReferenceNumber": "string",
+        "orderReferenceNumber": "string",
+        "name": "string",
+        "description": "string",
+        "barcode": "string",
+        "status": "CHECKED",
+        "rejectReason": "string",
+        "rejectComment": "string",
+        "pricePerUnit": 0,
+        "plannedQuantity": 0,
+        "factQuantity": 0,
+        "totalAmount": 0,
+        "height": 0,
+        "width": 0,
+        "length": 0,
+        "weight": 0,
+        "volume": 0
+      }
+    ],
+    "plannedItemsCount": 0,
+    "factItemsCount": 0,
+    "ItemsStatus": "IN_FULL"
+  }
+}
+
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/attachments
+View order attachments details
+Request
+
+Path Parameters
+
+orderReference
+string
+required
+Order reference
+Responses
+
+200
+404
+Successful response.
+Body
+
+
+
+application/json
+
+
+data
+OrderAttachmentsInfo
+A model containing information about attachments to an order
+orderReferenceNumber
+string
+
+attachments
+array[Attachment]
+An object representing an photo attachment to an order
+attachmentReferenceNumber
+string
+orderReferenceNumber
+string
+comment
+string
+imageSmall
+string<uri>
+imageFull
+string<uri>
+Token
+:
+
+orderReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/attachments \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "orderReferenceNumber": "string",
+    "attachments": [
+      {
+        "attachmentReferenceNumber": "string",
+        "orderReferenceNumber": "string",
+        "comment": "string",
+        "imageSmall": "http://example.com",
+        "imageFull": "http://example.com"
+      }
+    ]
+  }
+}
+
+
+Get POD details for an order
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/pod
+Get POD details, including signature and its metadata.
+Request
+
+Path Parameters
+
+orderReference
+string
+required
+Order reference
+Responses
+
+200
+404
+Successful response. If the order does not have the relevant information, the fields are returned with null values.
+Body
+
+
+
+application/json
+
+
+data
+PODInfo
+A model containing the POD information of an order, including signature and its metadata.
+orderReferenceNumber
+string
+signatoryName
+string
+signatureTime
+string<date-time>
+signatureImage
+string
+A base64-encoded signature image in PNG
+Token
+:
+
+orderReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/pod \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "orderReferenceNumber": "string",
+    "signatoryName": "string",
+    "signatureTime": "2019-08-24T14:15:22Z",
+    "signatureImage": "string"
+  }
+}
+
+
+Get tracking info for an order
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/tracking
+Will return the current position of the delivery. It will match the position of the delivery vehicle if the order's status is between DELIVERY_STARTED / PICKUP_STARTED and COMPLETED / FAILED
+Request
+
+Path Parameters
+
+orderReference
+string
+required
+Order reference
+Responses
+
+200
+404
+OK
+Body
+
+
+
+application/json
+
+
+data
+OrderTrackingInfo
+A model containing information that can be used to display the current position of the order.Show all...
+orderReferenceNumber
+string
+
+currentPosition
+GeoPosition
+An object that describes a geographical position with latitude and longitude
+latitude
+number
+longitude
+number
+status
+string
+Token
+:
+
+orderReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/tracking \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "orderReferenceNumber": "string",
+    "currentPosition": {
+      "latitude": 0,
+      "longitude": 0
+    },
+    "status": "string"
+  }
+}
+
+
+Get a list of orders
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders
+Request
+
+Query Parameters
+
+assignedDrivers
+string
+a comma-separated list of drivers to filter the orders
+assignedVehicles
+string
+a comma-separated list of vehicle references that orders as assigned to
+consignmentReference
+string
+Unique reference number of a consignment to link a delivery and collection.
+dcReference
+string
+filter orders by DC reference
+expand
+array
+comma separated list of expand parameters, if expand parameters is set - response objects would be expanded with values of expand parameters
+Allowed values:
+STATUS
+ATTRIBUTES
+WIDGET
+limit
+integer
+how many records to return
+>= 1
+<= 200
+Default:
+20
+offset
+integer
+how many records to skip
+>= 0
+plannedArrivalFrom
+string<date-time>
+datetime range of planned arrival times to filter the orders
+plannedArrivalTo
+string<date-time>
+datetime range of planned arrival times to filter the orders
+shiftDateFrom
+string<date>
+date range for the shifts the order is allocated to
+shiftDateTo
+string<date>
+date range for the shifts the order is allocated to
+statuses
+string
+a comma-separated list of statuses to filter the orders by.
+territoryReference
+string
+Get all the orders for a specific territory
+timeWindowFrom
+string<date-time>
+datetime range of time windows. Any orders that have windows intersecting with this range will be returned
+timeWindowTo
+string<date-time>
+datetime range of time windows. Any orders that have windows intersecting with this range will be returned
+Responses
+
+200
+400
+Success
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+array[OrderSummary]
+A lightweight object describing basic order details. Used in list methods.
+referenceNumber
+string
+consignmentReference
+string
+Used to group P&D orders in pairs. If set - assumes consignmentLinkType = "PickupAndDeliver".
+distributionCentreReference
+string
+distributionCentreName
+string
+task
+string
+Allowed values:
+DELIVERY
+COLLECTION
+Default:
+DELIVERY
+priority
+string
+Allowed values:
+NORMAL
+MEDIUM
+HIGH
+clientName
+string
+contactPerson
+string
+
+customerLocation
+object
+When creating an order via API it always creates a customer location.
+capacity1
+number
+capacity2
+number
+operationDuration
+integer
+In whole seconds
+>= 0
+
+customFields
+object
+Sent only if expand parameter includes ATTRIBUTES
+status
+string
+Sent only if expand parameter includes STATUSES
+Allowed values:
+UNALLOCATED
+ALLOCATED
+LOCKED
+SENDING
+SENT
+ACCEPTED
+DELIVERED
+COMPLETED
+FAILED
+DRIVING
+ARRIVED
+IN_PROGRESS
+WORK_COMPLETED
+DEPARTED
+SUSPENDED
+statusLastUpdated
+string<date-time>
+Sent only if expand parameter includes STATUSES
+
+widgetTrackingDetails
+WidgetTrackingDetails
+Object that contains an order tracking ID and URL from the tracking widget. Available in /orders only when expand parameter WIDGET is set.
+offset
+integer
+
+_links
+PagingLinks
+API implements pagination via links in this object. If there is a "next" link - you can call API via that link to get the next page of results. If you are on the last page, there will be no "next" link in this object.
+prev
+string
+Relative URL of the previous page of results. Use this to navigate back to the previous page.Show all...
+Example:
+/orders?offset=20
+next
+string
+Relative URL of the next page of results. Use this to navigate to the next page.Show all...
+Example:
+/orders?offset=40
+Token
+:
+
+assignedDrivers
+:
+
+assignedVehicles
+:
+
+consignmentReference
+:
+
+dcReference
+:
+
+expand
+:
+
+
+select an option
+
+limit
+:
+
+offset
+:
+
+plannedArrivalFrom
+:
+
+plannedArrivalTo
+:
+
+shiftDateFrom
+:
+
+shiftDateTo
+:
+
+statuses
+:
+
+territoryReference
+:
+
+timeWindowFrom
+:
+
+timeWindowTo
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": [
+    {
+      "referenceNumber": "string",
+      "consignmentReference": "string",
+      "distributionCentreReference": "string",
+      "distributionCentreName": "string",
+      "task": "DELIVERY",
+      "priority": "NORMAL",
+      "clientName": "string",
+      "contactPerson": "string",
+      "customerLocation": {
+        "referenceNumber": "string",
+        "name": "string",
+        "address": "string",
+        "latitude": 0,
+        "longitude": 0,
+        "w3wAddress": "string"
+      },
+      "capacity1": 0,
+      "capacity2": 0,
+      "operationDuration": 0,
+      "customFields": {
+        "": "string"
+      },
+      "status": "UNALLOCATED",
+      "statusLastUpdated": "2019-08-24T14:15:22Z",
+      "widgetTrackingDetails": {
+        "trackingId": "string",
+        "externalTrackingUri": "http://example.com"
+      }
+    }
+  ],
+  "offset": 0,
+  "_links": {
+    "prev": "/orders?offset=20",
+    "next": "/orders?offset=40"
+  }
+}
+
+Create an order
+POST
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders
+Request
+
+Body
+
+
+
+application/json
+
+A model that represents details of an order. Can be used to read, create and modify orders
+referenceNumber
+string
+consignmentReference
+string
+To streamline the planning process, Pickup and Delivery orders can be associated through a unique consignmentReference, establishing a 1:1 relationship between a delivery and collection task.
+>= 0 characters
+<= 255 characters
+distributionCentreReference
+string
+task
+string
+Allowed values:
+COLLECTION
+DELIVERY
+Default:
+DELIVERY
+priority
+string
+Allowed values:
+NORMAL
+MEDIUM
+HIGH
+Default:
+NORMAL
+vehicleRequirements
+array[string]
+references of required vehicle requirements.
+additionalInstructions
+string
+clientName
+string
+contactPerson
+string
+contactNumber
+string
+contactEmail
+string<email>
+additionalContactEmails
+array[string<email>]
+Additional emails for order notifications
+<= 255 items
+
+customerLocation
+object
+When creating an order via API it always creates an Landmark object. If you want to create a Customer location you need to create it via /locations endpoint and then pass its reference number in order creation step
+referenceNumber
+string
+If specified, none of the other fields of CL are mandatory. Will try to find the location by reference and fail if not found.Show all...
+name
+string
+address
+string
+latitude
+number
+longitude
+number
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+
+notificationPreferences
+object
+If not set, true is assumed for both.
+allowSMS
+boolean
+allowEmail
+boolean
+stopSequence
+string
+Allowed values:
+ANY
+FIRST
+LAST
+Default:
+ANY
+
+timeWindows
+array[TimeWindow]
+You can provide either orderDate or exact Time Windows if TimeWindows is set orderDate will be ignored
+start
+string<date-time>
+end
+string<date-time>
+orderDate
+string<date>
+You can provide either orderDate or exact Time Windows if timeWindows is set orderDate will be ignored Setting an orderDate will create a order with default account time windows
+Example:
+2023-03-01
+capacity1
+number
+capacity2
+number
+operationDuration
+integer
+In whole seconds
+>= 0
+customFields
+object
+On object containing a key-value pair for each custom field. The tech name is used as a key.
+
+orderItems
+array[OrderItem]
+An object that represents an order item.
+>= 0 items
+<= 500 items
+itemReferenceNumber
+string
+orderReferenceNumber
+string
+name
+string
+description
+string
+barcode
+string
+status
+string
+Allowed values:
+CHECKED
+UNCHECKED
+REJECTED
+rejectReason
+string
+rejectComment
+string
+pricePerUnit
+number
+plannedQuantity
+integer
+factQuantity
+integer
+totalAmount
+number
+height
+number<float>
+>= 0
+width
+number<float>
+>= 0
+length
+number<float>
+>= 0
+weight
+number<float>
+>= 0
+volume
+number<float>
+>= 0
+price
+number<double>
+>= 0
+Example:
+10
+Responses
+
+200
+400
+OK
+Token
+:
+
+
+{
+  "referenceNumber": "string",
+  "consignmentReference": "string",
+  "distributionCentreReference": "string",
+  "task": "DELIVERY",
+  "priority": "NORMAL",
+  "vehicleRequirements": [
+    "string"
+  ],
+  "additionalInstructions": "string",
+  "clientName": "string",
+  "contactPerson": "string",
+  "contactNumber": "string",
+  "contactEmail": "user@example.com",
+  "additionalContactEmails": [
+    "user@example.com"
+  ],
+  "customerLocation": {
+    "referenceNumber": "string",
+    "name": "string",
+    "address": "string",
+    "latitude": 0,
+    "longitude": 0,
+    "w3wAddress": "///rival.mirror.helps"
+  },
+  "notificationPreferences": {
+    "allowSMS": true,
+    "allowEmail": true
+  },
+  "stopSequence": "ANY",
+  "timeWindows": [
+    {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  ],
+  "orderDate": "2023-03-01",
+  "capacity1": 0,
+  "capacity2": 0,
+  "operationDuration": 0,
+  "customFields": {},
+  "orderItems": [
+    {
+      "itemReferenceNumber": "string",
+      "orderReferenceNumber": "string",
+      "name": "string",
+      "description": "string",
+      "barcode": "string",
+      "status": "CHECKED",
+      "rejectReason": "string",
+      "rejectComment": "string",
+      "pricePerUnit": 0,
+      "plannedQuantity": 0,
+      "factQuantity": 0,
+      "totalAmount": 0,
+      "height": 0,
+      "width": 0,
+      "length": 0,
+      "weight": 0,
+      "volume": 0
+    }
+  ],
+  "price": 10
+}
+Send API Request
+
+
+Live Server
+
+curl --request POST \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "referenceNumber": "string",
+  "consignmentReference": "string",
+  "distributionCentreReference": "string",
+  "task": "DELIVERY",
+  "priority": "NORMAL",
+  "vehicleRequirements": [
+    "string"
+  ],
+  "additionalInstructions": "string",
+  "clientName": "string",
+  "contactPerson": "string",
+  "contactNumber": "string",
+  "contactEmail": "user@example.com",
+  "additionalContactEmails": [
+    "user@example.com"
+  ],
+  "customerLocation": {
+    "referenceNumber": "string",
+    "name": "string",
+    "address": "string",
+    "latitude": 0,
+    "longitude": 0,
+    "w3wAddress": "///rival.mirror.helps"
+  },
+  "notificationPreferences": {
+    "allowSMS": true,
+    "allowEmail": true
+  },
+  "stopSequence": "ANY",
+  "timeWindows": [
+    {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  ],
+  "orderDate": "2023-03-01",
+  "capacity1": 0,
+  "capacity2": 0,
+  "operationDuration": 0,
+  "customFields": {},
+  "orderItems": [
+    {
+      "itemReferenceNumber": "string",
+      "orderReferenceNumber": "string",
+      "name": "string",
+      "description": "string",
+      "barcode": "string",
+      "status": "CHECKED",
+      "rejectReason": "string",
+      "rejectComment": "string",
+      "pricePerUnit": 0,
+      "plannedQuantity": 0,
+      "factQuantity": 0,
+      "totalAmount": 0,
+      "height": 0,
+      "width": 0,
+      "length": 0,
+      "weight": 0,
+      "volume": 0
+    }
+  ],
+  "price": 10
+}'
+
+Get order details
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}
+Request
+
+Path Parameters
+
+orderReference
+string
+required
+Responses
+
+200
+404
+409
+OK
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+OrderDetails
+A model that represents details of an order. Can be used to read, create and modify orders
+referenceNumber
+string
+consignmentReference
+string
+To streamline the planning process, Pickup and Delivery orders can be associated through a unique consignmentReference, establishing a 1:1 relationship between a delivery and collection task.
+>= 0 characters
+<= 255 characters
+distributionCentreReference
+string
+distributionCentreName
+string
+task
+string
+Allowed values:
+COLLECTION
+DELIVERY
+Default:
+DELIVERY
+priority
+string
+Allowed values:
+NORMAL
+MEDIUM
+HIGH
+Default:
+NORMAL
+vehicleRequirements
+array[string]
+references of required vehicle requirements.
+additionalInstructions
+string
+clientName
+string
+contactPerson
+string
+contactNumber
+string
+contactEmail
+string<email>
+additionalContactEmails
+array[string<email>]
+Additional emails for order notifications
+<= 255 items
+
+customerLocation
+object
+When creating an order via API it always creates an Landmark object. If you want to create a Customer location you need to create it via /locations endpoint and then pass its reference number in order creation step
+
+notificationPreferences
+object
+If not set, true is assumed for both.
+territoryReference
+string
+If order belongs to territory, this field will contain the reference of that territory
+<= 255 characters
+Example:
+territoryRef
+stopSequence
+string
+Allowed values:
+ANY
+FIRST
+LAST
+Default:
+ANY
+
+timeWindows
+array[TimeWindow]
+You can provide either orderDate or exact Time Windows if TimeWindows is set orderDate will be ignored
+capacity1
+number
+capacity2
+number
+operationDuration
+integer
+In whole seconds
+>= 0
+customFields
+object
+On object containing a key-value pair for each custom field. The tech name is used as a key.
+
+orderItems
+array[OrderItem]
+An object that represents an order item.
+>= 0 items
+<= 500 items
+price
+number<double>
+>= 0
+Example:
+10
+Token
+:
+
+orderReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "referenceNumber": "string",
+    "consignmentReference": "string",
+    "distributionCentreReference": "string",
+    "distributionCentreName": "string",
+    "task": "DELIVERY",
+    "priority": "NORMAL",
+    "vehicleRequirements": [
+      "string"
+    ],
+    "additionalInstructions": "string",
+    "clientName": "string",
+    "contactPerson": "string",
+    "contactNumber": "string",
+    "contactEmail": "user@example.com",
+    "additionalContactEmails": [
+      "user@example.com"
+    ],
+    "customerLocation": {
+      "referenceNumber": "string",
+      "name": "string",
+      "address": "string",
+      "latitude": 0,
+      "longitude": 0,
+      "w3wAddress": "///rival.mirror.helps"
+    },
+    "notificationPreferences": {
+      "allowSMS": true,
+      "allowEmail": true
+    },
+    "territoryReference": "territoryRef",
+    "stopSequence": "ANY",
+    "timeWindows": [
+      {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      }
+    ],
+    "capacity1": 0,
+    "capacity2": 0,
+    "operationDuration": 0,
+    "customFields": {},
+    "orderItems": [
+      {
+        "itemReferenceNumber": "string",
+        "orderReferenceNumber": "string",
+        "name": "string",
+        "description": "string",
+        "barcode": "string",
+        "status": "CHECKED",
+        "rejectReason": "string",
+        "rejectComment": "string",
+        "pricePerUnit": 0,
+        "plannedQuantity": 0,
+        "factQuantity": 0,
+        "totalAmount": 0,
+        "height": 0,
+        "width": 0,
+        "length": 0,
+        "weight": 0,
+        "volume": 0
+      }
+    ],
+    "price": 10
+  }
+}
+
+Update an order
+PUT
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}
+Request
+
+Path Parameters
+
+orderReference
+string
+required
+Body
+
+
+
+application/json
+
+A model that represents details of an order. Can be used to read, create and modify orders
+referenceNumber
+string
+consignmentReference
+string
+To streamline the planning process, Pickup and Delivery orders can be associated through a unique consignmentReference, establishing a 1:1 relationship between a delivery and collection task.
+>= 0 characters
+<= 255 characters
+distributionCentreReference
+string
+task
+string
+Allowed values:
+COLLECTION
+DELIVERY
+Default:
+DELIVERY
+priority
+string
+Allowed values:
+NORMAL
+MEDIUM
+HIGH
+Default:
+NORMAL
+vehicleRequirements
+array[string]
+references of required vehicle requirements.
+additionalInstructions
+string
+clientName
+string
+contactPerson
+string
+contactNumber
+string
+contactEmail
+string<email>
+additionalContactEmails
+array[string<email>]
+Additional emails for order notifications
+<= 255 items
+
+customerLocation
+object
+When creating an order via API it always creates an Landmark object. If you want to create a Customer location you need to create it via /locations endpoint and then pass its reference number in order creation step
+referenceNumber
+string
+If specified, none of the other fields of CL are mandatory. Will try to find the location by reference and fail if not found.Show all...
+name
+string
+address
+string
+latitude
+number
+longitude
+number
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+
+notificationPreferences
+object
+If not set, true is assumed for both.
+allowSMS
+boolean
+allowEmail
+boolean
+stopSequence
+string
+Allowed values:
+ANY
+FIRST
+LAST
+Default:
+ANY
+
+timeWindows
+array[TimeWindow]
+You can provide either orderDate or exact Time Windows if TimeWindows is set orderDate will be ignored
+start
+string<date-time>
+end
+string<date-time>
+orderDate
+string<date>
+You can provide either orderDate or exact Time Windows if timeWindows is set orderDate will be ignored Setting an orderDate will create a order with default account time windows
+Example:
+2023-03-01
+capacity1
+number
+capacity2
+number
+operationDuration
+integer
+In whole seconds
+>= 0
+customFields
+object
+On object containing a key-value pair for each custom field. The tech name is used as a key.
+
+orderItems
+array[OrderItem]
+An object that represents an order item.
+>= 0 items
+<= 500 items
+itemReferenceNumber
+string
+orderReferenceNumber
+string
+name
+string
+description
+string
+barcode
+string
+status
+string
+Allowed values:
+CHECKED
+UNCHECKED
+REJECTED
+rejectReason
+string
+rejectComment
+string
+pricePerUnit
+number
+plannedQuantity
+integer
+factQuantity
+integer
+totalAmount
+number
+height
+number<float>
+>= 0
+width
+number<float>
+>= 0
+length
+number<float>
+>= 0
+weight
+number<float>
+>= 0
+volume
+number<float>
+>= 0
+price
+number<double>
+>= 0
+Example:
+10
+Responses
+
+200
+400
+404
+409
+412
+Successfully updated.
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+OrderDetails
+A model that represents details of an order. Can be used to read, create and modify orders
+referenceNumber
+string
+consignmentReference
+string
+To streamline the planning process, Pickup and Delivery orders can be associated through a unique consignmentReference, establishing a 1:1 relationship between a delivery and collection task.
+>= 0 characters
+<= 255 characters
+distributionCentreReference
+string
+distributionCentreName
+string
+task
+string
+Allowed values:
+COLLECTION
+DELIVERY
+Default:
+DELIVERY
+priority
+string
+Allowed values:
+NORMAL
+MEDIUM
+HIGH
+Default:
+NORMAL
+vehicleRequirements
+array[string]
+references of required vehicle requirements.
+additionalInstructions
+string
+clientName
+string
+contactPerson
+string
+contactNumber
+string
+contactEmail
+string<email>
+additionalContactEmails
+array[string<email>]
+Additional emails for order notifications
+<= 255 items
+
+customerLocation
+object
+When creating an order via API it always creates an Landmark object. If you want to create a Customer location you need to create it via /locations endpoint and then pass its reference number in order creation step
+
+notificationPreferences
+object
+If not set, true is assumed for both.
+territoryReference
+string
+If order belongs to territory, this field will contain the reference of that territory
+<= 255 characters
+Example:
+territoryRef
+stopSequence
+string
+Allowed values:
+ANY
+FIRST
+LAST
+Default:
+ANY
+
+timeWindows
+array[TimeWindow]
+You can provide either orderDate or exact Time Windows if TimeWindows is set orderDate will be ignored
+capacity1
+number
+capacity2
+number
+operationDuration
+integer
+In whole seconds
+>= 0
+customFields
+object
+On object containing a key-value pair for each custom field. The tech name is used as a key.
+
+orderItems
+array[OrderItem]
+An object that represents an order item.
+>= 0 items
+<= 500 items
+price
+number<double>
+>= 0
+Example:
+10
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+Token
+:
+
+orderReference*
+:
+
+
+{
+  "referenceNumber": "string",
+  "consignmentReference": "string",
+  "distributionCentreReference": "string",
+  "task": "DELIVERY",
+  "priority": "NORMAL",
+  "vehicleRequirements": [
+    "string"
+  ],
+  "additionalInstructions": "string",
+  "clientName": "string",
+  "contactPerson": "string",
+  "contactNumber": "string",
+  "contactEmail": "user@example.com",
+  "additionalContactEmails": [
+    "user@example.com"
+  ],
+  "customerLocation": {
+    "referenceNumber": "string",
+    "name": "string",
+    "address": "string",
+    "latitude": 0,
+    "longitude": 0,
+    "w3wAddress": "///rival.mirror.helps"
+  },
+  "notificationPreferences": {
+    "allowSMS": true,
+    "allowEmail": true
+  },
+  "stopSequence": "ANY",
+  "timeWindows": [
+    {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  ],
+  "orderDate": "2023-03-01",
+  "capacity1": 0,
+  "capacity2": 0,
+  "operationDuration": 0,
+  "customFields": {},
+  "orderItems": [
+    {
+      "itemReferenceNumber": "string",
+      "orderReferenceNumber": "string",
+      "name": "string",
+      "description": "string",
+      "barcode": "string",
+      "status": "CHECKED",
+      "rejectReason": "string",
+      "rejectComment": "string",
+      "pricePerUnit": 0,
+      "plannedQuantity": 0,
+      "factQuantity": 0,
+      "totalAmount": 0,
+      "height": 0,
+      "width": 0,
+      "length": 0,
+      "weight": 0,
+      "volume": 0
+    }
+  ],
+  "price": 10
+}
+Send API Request
+
+
+Live Server
+
+curl --request PUT \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "referenceNumber": "string",
+  "consignmentReference": "string",
+  "distributionCentreReference": "string",
+  "task": "DELIVERY",
+  "priority": "NORMAL",
+  "vehicleRequirements": [
+    "string"
+  ],
+  "additionalInstructions": "string",
+  "clientName": "string",
+  "contactPerson": "string",
+  "contactNumber": "string",
+  "contactEmail": "user@example.com",
+  "additionalContactEmails": [
+    "user@example.com"
+  ],
+  "customerLocation": {
+    "referenceNumber": "string",
+    "name": "string",
+    "address": "string",
+    "latitude": 0,
+    "longitude": 0,
+    "w3wAddress": "///rival.mirror.helps"
+  },
+  "notificationPreferences": {
+    "allowSMS": true,
+    "allowEmail": true
+  },
+  "stopSequence": "ANY",
+  "timeWindows": [
+    {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  ],
+  "orderDate": "2023-03-01",
+  "capacity1": 0,
+  "capacity2": 0,
+  "operationDuration": 0,
+  "customFields": {},
+  "orderItems": [
+    {
+      "itemReferenceNumber": "string",
+      "orderReferenceNumber": "string",
+      "name": "string",
+      "description": "string",
+      "barcode": "string",
+      "status": "CHECKED",
+      "rejectReason": "string",
+      "rejectComment": "string",
+      "pricePerUnit": 0,
+      "plannedQuantity": 0,
+      "factQuantity": 0,
+      "totalAmount": 0,
+      "height": 0,
+      "width": 0,
+      "length": 0,
+      "weight": 0,
+      "volume": 0
+    }
+  ],
+  "price": 10
+}'
+{
+  "data": {
+    "referenceNumber": "string",
+    "consignmentReference": "string",
+    "distributionCentreReference": "string",
+    "distributionCentreName": "string",
+    "task": "DELIVERY",
+    "priority": "NORMAL",
+    "vehicleRequirements": [
+      "string"
+    ],
+    "additionalInstructions": "string",
+    "clientName": "string",
+    "contactPerson": "string",
+    "contactNumber": "string",
+    "contactEmail": "user@example.com",
+    "additionalContactEmails": [
+      "user@example.com"
+    ],
+    "customerLocation": {
+      "referenceNumber": "string",
+      "name": "string",
+      "address": "string",
+      "latitude": 0,
+      "longitude": 0,
+      "w3wAddress": "///rival.mirror.helps"
+    },
+    "notificationPreferences": {
+      "allowSMS": true,
+      "allowEmail": true
+    },
+    "territoryReference": "territoryRef",
+    "stopSequence": "ANY",
+    "timeWindows": [
+      {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      }
+    ],
+    "capacity1": 0,
+    "capacity2": 0,
+    "operationDuration": 0,
+    "customFields": {},
+    "orderItems": [
+      {
+        "itemReferenceNumber": "string",
+        "orderReferenceNumber": "string",
+        "name": "string",
+        "description": "string",
+        "barcode": "string",
+        "status": "CHECKED",
+        "rejectReason": "string",
+        "rejectComment": "string",
+        "pricePerUnit": 0,
+        "plannedQuantity": 0,
+        "factQuantity": 0,
+        "totalAmount": 0,
+        "height": 0,
+        "width": 0,
+        "length": 0,
+        "weight": 0,
+        "volume": 0
+      }
+    ],
+    "price": 10
+  },
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ]
+}
+
+Partially update an order
+PATCH
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}
+Modify order using json-patch semantics IETF RFC-6902 For more informantion see http://jsonpatch.com/
+
+You can modify order model with the set of json patch commands
+
+You can see examples for manupulating order items in Body - 'examples' menu
+Request
+
+Path Parameters
+
+orderReference
+string
+required
+Body
+
+
+
+application/json-patch+json
+
+Valid JSON Patch request to modify the order
+array of:
+op
+string
+required
+Allowed values:
+add
+remove
+replace
+copy
+move
+test
+Example:
+replace
+path
+string
+required
+Example:
+/clientName
+value
+string
+required
+Example:
+Some Name
+Responses
+
+200
+400
+404
+409
+412
+Success
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+
+data
+OrderDetails
+A model that represents details of an order. Can be used to read, create and modify orders
+referenceNumber
+string
+consignmentReference
+string
+To streamline the planning process, Pickup and Delivery orders can be associated through a unique consignmentReference, establishing a 1:1 relationship between a delivery and collection task.
+>= 0 characters
+<= 255 characters
+distributionCentreReference
+string
+distributionCentreName
+string
+task
+string
+Allowed values:
+COLLECTION
+DELIVERY
+Default:
+DELIVERY
+priority
+string
+Allowed values:
+NORMAL
+MEDIUM
+HIGH
+Default:
+NORMAL
+vehicleRequirements
+array[string]
+references of required vehicle requirements.
+additionalInstructions
+string
+clientName
+string
+contactPerson
+string
+contactNumber
+string
+contactEmail
+string<email>
+additionalContactEmails
+array[string<email>]
+Additional emails for order notifications
+<= 255 items
+
+customerLocation
+object
+When creating an order via API it always creates an Landmark object. If you want to create a Customer location you need to create it via /locations endpoint and then pass its reference number in order creation step
+
+notificationPreferences
+object
+If not set, true is assumed for both.
+territoryReference
+string
+If order belongs to territory, this field will contain the reference of that territory
+<= 255 characters
+Example:
+territoryRef
+stopSequence
+string
+Allowed values:
+ANY
+FIRST
+LAST
+Default:
+ANY
+
+timeWindows
+array[TimeWindow]
+You can provide either orderDate or exact Time Windows if TimeWindows is set orderDate will be ignored
+capacity1
+number
+capacity2
+number
+operationDuration
+integer
+In whole seconds
+>= 0
+customFields
+object
+On object containing a key-value pair for each custom field. The tech name is used as a key.
+
+orderItems
+array[OrderItem]
+An object that represents an order item.
+>= 0 items
+<= 500 items
+price
+number<double>
+>= 0
+Example:
+10
+Token
+:
+
+orderReference*
+:
+
+
+[
+  {
+    "op": "replace",
+    "path": "/clientName",
+    "value": "Some Name"
+  }
+]
+Send API Request
+
+
+Live Server
+
+curl --request PATCH \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json-patch+json' \
+  --data '[
+  {
+    "op": "replace",
+    "path": "/clientName",
+    "value": "Some Name"
+  }
+]'
+{
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ],
+  "data": {
+    "referenceNumber": "string",
+    "consignmentReference": "string",
+    "distributionCentreReference": "string",
+    "distributionCentreName": "string",
+    "task": "DELIVERY",
+    "priority": "NORMAL",
+    "vehicleRequirements": [
+      "string"
+    ],
+    "additionalInstructions": "string",
+    "clientName": "string",
+    "contactPerson": "string",
+    "contactNumber": "string",
+    "contactEmail": "user@example.com",
+    "additionalContactEmails": [
+      "user@example.com"
+    ],
+    "customerLocation": {
+      "referenceNumber": "string",
+      "name": "string",
+      "address": "string",
+      "latitude": 0,
+      "longitude": 0,
+      "w3wAddress": "///rival.mirror.helps"
+    },
+    "notificationPreferences": {
+      "allowSMS": true,
+      "allowEmail": true
+    },
+    "territoryReference": "territoryRef",
+    "stopSequence": "ANY",
+    "timeWindows": [
+      {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      }
+    ],
+    "capacity1": 0,
+    "capacity2": 0,
+    "operationDuration": 0,
+    "customFields": {},
+    "orderItems": [
+      {
+        "itemReferenceNumber": "string",
+        "orderReferenceNumber": "string",
+        "name": "string",
+        "description": "string",
+        "barcode": "string",
+        "status": "CHECKED",
+        "rejectReason": "string",
+        "rejectComment": "string",
+        "pricePerUnit": 0,
+        "plannedQuantity": 0,
+        "factQuantity": 0,
+        "totalAmount": 0,
+        "height": 0,
+        "width": 0,
+        "length": 0,
+        "weight": 0,
+        "volume": 0
+      }
+    ],
+    "price": 10
+  }
+}
+
+Delete an order
+DELETE
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}
+Request
+
+Path Parameters
+
+orderReference
+string
+required
+Responses
+
+200
+404
+409
+412
+OK
+Body
+
+
+
+application/json
+
+
+warnings
+Warning
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+Token
+:
+
+orderReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request DELETE \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "warnings": {
+    "code": "string",
+    "name": "string",
+    "details": "string",
+    "field": "string"
+  }
+}
+
+Get widget info for order by reference
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{reference}/widget
+Returns widget details of a particular order by it's reference
+Request
+
+Path Parameters
+
+reference
+string
+required
+Responses
+
+200
+404
+OK
+Body
+
+
+
+application/json
+
+
+data
+WidgetTrackingDetails
+Object that contains an order tracking ID and URL from the tracking widget. Available in /orders only when expand parameter WIDGET is set.
+trackingId
+string
+Alphanumeric id for order tracking
+externalTrackingUri
+string<uri>
+URI to access the tracking information if customer domain is not configured
+Token
+:
+
+reference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{reference}/widget \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "trackingId": "string",
+    "externalTrackingUri": "http://example.com"
+  }
+}
+
+Get loading state of an order
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/loading
+Returns loading status of an order and individual loading statuses of order items.
+
+Loading management addon should be enabled for the account.
+
+If not then system will respond with 412 error code and Functionality not enabled error.
+
+If order does not contain any items then system will respond with UNKNOWN status.
+
+If order not yet sent to loading or loading process is not started yet then system will respond with NOT_LOADED status.
+Request
+
+Path Parameters
+
+orderReference
+string
+required
+Order Reference
+Responses
+
+200
+401
+404
+412
+OK
+Body
+
+
+
+application/json
+
+
+data
+OrderLoadingInfo
+An object containing order loading status and individual loading statuses of the items in this order
+orderReferenceNumber
+string
+orderLoadingStatus
+any
+Loading Status of Order or Run for Loading Management
+Allowed values:
+UNKNOWN
+NOT_LOADED
+PARTIALLY_LOADED
+LOADED
+Example:
+LOADED
+
+orderItemsLoading
+array[OrderItemLoadingInfo]
+An object containing order item loading status and additional fields
+string
+Token
+:
+
+orderReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/orders/{orderReference}/loading \
+  --header 'Accept: application/json, json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "orderReferenceNumber": "string",
+    "orderLoadingStatus": "LOADED",
+    "orderItemsLoading": [
+      {
+        "name": "string",
+        "barcode": "string",
+        "quantity": 0,
+        "loadedQuantity": 0,
+        "loadingStatus": "LOADED"
+      }
+    ]
+  },
+  "": "string"
+}
+
+Get vehicle details
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles/{reference}
+Request
+
+Path Parameters
+
+reference
+string
+required
+The vehicle's reference number
+Responses
+
+200
+404
+OK
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+VehicleDetails
+referenceNumber
+string
+required
+Called External ID in UI
+name
+string
+required
+The default name of the vehicle
+assignedDevice
+string
+trackingSource
+string
+Allowed values:
+TOMTOM
+WIALON
+MAXOPTRA
+vehicleRequirementsReferences
+array[string]
+A list of references (abbreviations) of vehicle requirements the vehicle supports.
+maxSpeed
+number<float>
+In the units of the account (mph or kmph).
+Multiple of:
+0.01
+drivingTimeCorrectionFactor
+number<float>
+Default:
+1
+Multiple of:
+0.01
+costPerDistance
+number<float>
+In the units of the account (per mile or per km)
+Multiple of:
+0.01
+activationCost
+number<float>
+Multiple of:
+0.01
+costPerOrder
+number<float>
+Multiple of:
+0.01
+capacity1
+number<float>
+Multiple of:
+0.001
+capacity2
+number<float>
+Multiple of:
+0.001
+runDistanceLimit
+number<float>
+In the units of the account (km or miles)
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+assignedDriverReference
+string
+assignedDriverName
+string
+territoriesReferences
+array[string]
+comment
+string
+manufacturer
+string
+VIN
+string
+isStandDown
+boolean
+isArchived
+boolean
+color
+string
+The color in RGB HEX format with a leading "#"
+>= 7 characters
+<= 7 characters
+Example:
+#FF00AA
+Token
+:
+
+reference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "referenceNumber": "string",
+    "name": "string",
+    "assignedDevice": "string",
+    "trackingSource": "TOMTOM",
+    "vehicleRequirementsReferences": [
+      "string"
+    ],
+    "maxSpeed": 0,
+    "drivingTimeCorrectionFactor": 1,
+    "costPerDistance": 0,
+    "activationCost": 0,
+    "costPerOrder": 0,
+    "capacity1": 0,
+    "capacity2": 0,
+    "runDistanceLimit": 0,
+    "distributionCentreReference": "string",
+    "distributionCentreName": "string",
+    "assignedDriverReference": "string",
+    "assignedDriverName": "string",
+    "territoriesReferences": [
+      "string"
+    ],
+    "comment": "string",
+    "manufacturer": "string",
+    "VIN": "string",
+    "isStandDown": true,
+    "isArchived": true,
+    "color": "#FF00AA"
+  }
+}
+
+Update an existing vehicle
+PUT
+https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles/{reference}
+Update a vehicle
+Request
+
+Path Parameters
+
+reference
+string
+required
+The vehicle's reference number
+Body
+
+
+
+application/json
+
+referenceNumber
+string
+required
+Called External ID in UI
+name
+string
+required
+The default name of the vehicle
+assignedDevice
+string
+trackingSource
+string
+Allowed values:
+TOMTOM
+WIALON
+MAXOPTRA
+vehicleRequirementsReferences
+array[string]
+A list of references (abbreviations) of vehicle requirements the vehicle supports.
+maxSpeed
+number<float>
+In the units of the account (mph or kmph).
+Multiple of:
+0.01
+drivingTimeCorrectionFactor
+number<float>
+Default:
+1
+Multiple of:
+0.01
+costPerDistance
+number<float>
+In the units of the account (per mile or per km)
+Multiple of:
+0.01
+activationCost
+number<float>
+Multiple of:
+0.01
+costPerOrder
+number<float>
+Multiple of:
+0.01
+capacity1
+number<float>
+Multiple of:
+0.001
+capacity2
+number<float>
+Multiple of:
+0.001
+runDistanceLimit
+number<float>
+In the units of the account (km or miles)
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+assignedDriverReference
+string
+territoriesReferences
+array[string]
+comment
+string
+manufacturer
+string
+VIN
+string
+isStandDown
+boolean
+isArchived
+boolean
+color
+string
+The color in RGB HEX format with a leading "#"
+>= 7 characters
+<= 7 characters
+Example:
+#FF00AA
+Responses
+
+200
+
+Vehicle updated. Returns the data of the updated object.
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+VehicleDetails
+referenceNumber
+string
+required
+Called External ID in UI
+name
+string
+required
+The default name of the vehicle
+assignedDevice
+string
+trackingSource
+string
+Allowed values:
+TOMTOM
+WIALON
+MAXOPTRA
+vehicleRequirementsReferences
+array[string]
+A list of references (abbreviations) of vehicle requirements the vehicle supports.
+maxSpeed
+number<float>
+In the units of the account (mph or kmph).
+Multiple of:
+0.01
+drivingTimeCorrectionFactor
+number<float>
+Default:
+1
+Multiple of:
+0.01
+costPerDistance
+number<float>
+In the units of the account (per mile or per km)
+Multiple of:
+0.01
+activationCost
+number<float>
+Multiple of:
+0.01
+costPerOrder
+number<float>
+Multiple of:
+0.01
+capacity1
+number<float>
+Multiple of:
+0.001
+capacity2
+number<float>
+Multiple of:
+0.001
+runDistanceLimit
+number<float>
+In the units of the account (km or miles)
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+assignedDriverReference
+string
+assignedDriverName
+string
+territoriesReferences
+array[string]
+comment
+string
+manufacturer
+string
+VIN
+string
+isStandDown
+boolean
+isArchived
+boolean
+color
+string
+The color in RGB HEX format with a leading "#"
+>= 7 characters
+<= 7 characters
+Example:
+#FF00AA
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+Token
+:
+
+reference*
+:
+
+
+{
+  "referenceNumber": "string",
+  "name": "string",
+  "assignedDevice": "string",
+  "trackingSource": "TOMTOM",
+  "vehicleRequirementsReferences": [
+    "string"
+  ],
+  "maxSpeed": -3.402823669209385e+38,
+  "drivingTimeCorrectionFactor": 1,
+  "costPerDistance": -3.402823669209385e+38,
+  "activationCost": -3.402823669209385e+38,
+  "costPerOrder": -3.402823669209385e+38,
+  "capacity1": -3.402823669209385e+38,
+  "capacity2": -3.402823669209385e+38,
+  "runDistanceLimit": -3.402823669209385e+38,
+  "distributionCentreReference": "string",
+  "assignedDriverReference": "string",
+  "territoriesReferences": [
+    "string"
+  ],
+  "comment": "string",
+  "manufacturer": "string",
+  "VIN": "string",
+  "isStandDown": true,
+  "isArchived": true,
+  "color": "#FF00AA"
+}
+Send API Request
+
+
+Live Server
+
+curl --request PUT \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "referenceNumber": "string",
+  "name": "string",
+  "assignedDevice": "string",
+  "trackingSource": "TOMTOM",
+  "vehicleRequirementsReferences": [
+    "string"
+  ],
+  "maxSpeed": -3.402823669209385e+38,
+  "drivingTimeCorrectionFactor": 1,
+  "costPerDistance": -3.402823669209385e+38,
+  "activationCost": -3.402823669209385e+38,
+  "costPerOrder": -3.402823669209385e+38,
+  "capacity1": -3.402823669209385e+38,
+  "capacity2": -3.402823669209385e+38,
+  "runDistanceLimit": -3.402823669209385e+38,
+  "distributionCentreReference": "string",
+  "assignedDriverReference": "string",
+  "territoriesReferences": [
+    "string"
+  ],
+  "comment": "string",
+  "manufacturer": "string",
+  "VIN": "string",
+  "isStandDown": true,
+  "isArchived": true,
+  "color": "#FF00AA"
+}'
+{
+  "data": {
+    "referenceNumber": "string",
+    "name": "string",
+    "assignedDevice": "string",
+    "trackingSource": "TOMTOM",
+    "vehicleRequirementsReferences": [
+      "string"
+    ],
+    "maxSpeed": 0,
+    "drivingTimeCorrectionFactor": 1,
+    "costPerDistance": 0,
+    "activationCost": 0,
+    "costPerOrder": 0,
+    "capacity1": 0,
+    "capacity2": 0,
+    "runDistanceLimit": 0,
+    "distributionCentreReference": "string",
+    "distributionCentreName": "string",
+    "assignedDriverReference": "string",
+    "assignedDriverName": "string",
+    "territoriesReferences": [
+      "string"
+    ],
+    "comment": "string",
+    "manufacturer": "string",
+    "VIN": "string",
+    "isStandDown": true,
+    "isArchived": true,
+    "color": "#FF00AA"
+  },
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ]
+}
+
+Partially update a vehicle
+PATCH
+https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles/{reference}
+Update a vehicle. Only updates specified fields. None of the fields are mandatory.
+Request
+
+Path Parameters
+
+reference
+string
+required
+The vehicle's reference number
+Body
+
+
+
+application/json
+
+referenceNumber
+string
+required
+Called External ID in UI
+name
+string
+required
+The default name of the vehicle
+assignedDevice
+string
+trackingSource
+string
+Allowed values:
+TOMTOM
+WIALON
+MAXOPTRA
+vehicleRequirementsReferences
+array[string]
+A list of references (abbreviations) of vehicle requirements the vehicle supports.
+maxSpeed
+number<float>
+In the units of the account (mph or kmph).
+Multiple of:
+0.01
+drivingTimeCorrectionFactor
+number<float>
+Default:
+1
+Multiple of:
+0.01
+costPerDistance
+number<float>
+In the units of the account (per mile or per km)
+Multiple of:
+0.01
+activationCost
+number<float>
+Multiple of:
+0.01
+costPerOrder
+number<float>
+Multiple of:
+0.01
+capacity1
+number<float>
+Multiple of:
+0.001
+capacity2
+number<float>
+Multiple of:
+0.001
+runDistanceLimit
+number<float>
+In the units of the account (km or miles)
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+assignedDriverReference
+string
+territoriesReferences
+array[string]
+comment
+string
+manufacturer
+string
+VIN
+string
+isStandDown
+boolean
+isArchived
+boolean
+color
+string
+The color in RGB HEX format with a leading "#"
+>= 7 characters
+<= 7 characters
+Example:
+#FF00AA
+Responses
+
+200
+
+Object successfully updated. Returns the data of the updated object and warnings if any.
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+VehicleDetails
+referenceNumber
+string
+required
+Called External ID in UI
+name
+string
+required
+The default name of the vehicle
+assignedDevice
+string
+trackingSource
+string
+Allowed values:
+TOMTOM
+WIALON
+MAXOPTRA
+vehicleRequirementsReferences
+array[string]
+A list of references (abbreviations) of vehicle requirements the vehicle supports.
+maxSpeed
+number<float>
+In the units of the account (mph or kmph).
+Multiple of:
+0.01
+drivingTimeCorrectionFactor
+number<float>
+Default:
+1
+Multiple of:
+0.01
+costPerDistance
+number<float>
+In the units of the account (per mile or per km)
+Multiple of:
+0.01
+activationCost
+number<float>
+Multiple of:
+0.01
+costPerOrder
+number<float>
+Multiple of:
+0.01
+capacity1
+number<float>
+Multiple of:
+0.001
+capacity2
+number<float>
+Multiple of:
+0.001
+runDistanceLimit
+number<float>
+In the units of the account (km or miles)
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+assignedDriverReference
+string
+assignedDriverName
+string
+territoriesReferences
+array[string]
+comment
+string
+manufacturer
+string
+VIN
+string
+isStandDown
+boolean
+isArchived
+boolean
+color
+string
+The color in RGB HEX format with a leading "#"
+>= 7 characters
+<= 7 characters
+Example:
+#FF00AA
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+Token
+:
+
+reference*
+:
+
+
+{
+  "referenceNumber": "string",
+  "name": "string",
+  "assignedDevice": "string",
+  "trackingSource": "TOMTOM",
+  "vehicleRequirementsReferences": [
+    "string"
+  ],
+  "maxSpeed": -3.402823669209385e+38,
+  "drivingTimeCorrectionFactor": 1,
+  "costPerDistance": -3.402823669209385e+38,
+  "activationCost": -3.402823669209385e+38,
+  "costPerOrder": -3.402823669209385e+38,
+  "capacity1": -3.402823669209385e+38,
+  "capacity2": -3.402823669209385e+38,
+  "runDistanceLimit": -3.402823669209385e+38,
+  "distributionCentreReference": "string",
+  "assignedDriverReference": "string",
+  "territoriesReferences": [
+    "string"
+  ],
+  "comment": "string",
+  "manufacturer": "string",
+  "VIN": "string",
+  "isStandDown": true,
+  "isArchived": true,
+  "color": "#FF00AA"
+}
+Send API Request
+
+
+Live Server
+
+curl --request PATCH \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "referenceNumber": "string",
+  "name": "string",
+  "assignedDevice": "string",
+  "trackingSource": "TOMTOM",
+  "vehicleRequirementsReferences": [
+    "string"
+  ],
+  "maxSpeed": -3.402823669209385e+38,
+  "drivingTimeCorrectionFactor": 1,
+  "costPerDistance": -3.402823669209385e+38,
+  "activationCost": -3.402823669209385e+38,
+  "costPerOrder": -3.402823669209385e+38,
+  "capacity1": -3.402823669209385e+38,
+  "capacity2": -3.402823669209385e+38,
+  "runDistanceLimit": -3.402823669209385e+38,
+  "distributionCentreReference": "string",
+  "assignedDriverReference": "string",
+  "territoriesReferences": [
+    "string"
+  ],
+  "comment": "string",
+  "manufacturer": "string",
+  "VIN": "string",
+  "isStandDown": true,
+  "isArchived": true,
+  "color": "#FF00AA"
+}'
+{
+  "data": {
+    "referenceNumber": "string",
+    "name": "string",
+    "assignedDevice": "string",
+    "trackingSource": "TOMTOM",
+    "vehicleRequirementsReferences": [
+      "string"
+    ],
+    "maxSpeed": 0,
+    "drivingTimeCorrectionFactor": 1,
+    "costPerDistance": 0,
+    "activationCost": 0,
+    "costPerOrder": 0,
+    "capacity1": 0,
+    "capacity2": 0,
+    "runDistanceLimit": 0,
+    "distributionCentreReference": "string",
+    "distributionCentreName": "string",
+    "assignedDriverReference": "string",
+    "assignedDriverName": "string",
+    "territoriesReferences": [
+      "string"
+    ],
+    "comment": "string",
+    "manufacturer": "string",
+    "VIN": "string",
+    "isStandDown": true,
+    "isArchived": true,
+    "color": "#FF00AA"
+  },
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ]
+}
+
+Delete a vehicle
+DELETE
+https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles/{reference}
+Delete a vehicle
+Request
+
+Path Parameters
+
+reference
+string
+required
+The vehicle's reference number
+Responses
+
+200
+
+The vehicle was successfully deleted. Returns warnings if any.
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+warnings
+Warning
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+Token
+:
+
+reference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request DELETE \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "warnings": {
+    "code": "string",
+    "name": "string",
+    "details": "string",
+    "field": "string"
+  }
+}
+
+Get a list of vehicles
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles
+Get a list of vehicles
+Request
+
+Query Parameters
+
+dcReference
+string
+DC to filter the vehicles by
+limit
+integer
+The number of results to return.
+>= 1
+<= 200
+Default:
+20
+offset
+integer
+How many records to skip. 0 by default
+>= 0
+Responses
+
+200
+
+Returns a list of vehicles. If no vehicles were found, an empty list is returned.
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+array[VehicleSummary]
+A lightweight object containing basic vehicle detials - used in list views.
+referenceNumber
+string
+Called External ID in UI
+name
+string
+The default name of the vehicle
+capacity1
+number<float>
+Multiple of:
+0.001
+capacity2
+number<float>
+Multiple of:
+0.001
+distributionCentreReference
+string
+distributionCentreName
+string
+assignedDriverReference
+string
+assignedDriverName
+string
+offset
+integer
+How many records were skipped (based on the GET parameter offset)
+
+_links
+PagingLinks
+API implements pagination via links in this object. If there is a "next" link - you can call API via that link to get the next page of results. If you are on the last page, there will be no "next" link in this object.
+prev
+string
+Relative URL of the previous page of results. Use this to navigate back to the previous page.Show all...
+Example:
+/orders?offset=20
+next
+string
+Relative URL of the next page of results. Use this to navigate to the next page.Show all...
+Example:
+/orders?offset=40
+Token
+:
+
+dcReference
+:
+
+limit
+:
+
+offset
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": [
+    {
+      "referenceNumber": "string",
+      "name": "string",
+      "capacity1": 0,
+      "capacity2": 0,
+      "distributionCentreReference": "string",
+      "distributionCentreName": "string",
+      "assignedDriverReference": "string",
+      "assignedDriverName": "string"
+    }
+  ],
+  "offset": 0,
+  "_links": {
+    "prev": "/orders?offset=20",
+    "next": "/orders?offset=40"
+  }
+}
+
+Create a vehicle
+POST
+https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles
+Create a vehicle
+Request
+
+Body
+
+
+
+application/json
+
+referenceNumber
+string
+required
+Called External ID in UI
+name
+string
+required
+The default name of the vehicle
+assignedDevice
+string
+trackingSource
+string
+Allowed values:
+TOMTOM
+WIALON
+MAXOPTRA
+vehicleRequirementsReferences
+array[string]
+A list of references (abbreviations) of vehicle requirements the vehicle supports.
+maxSpeed
+number<float>
+In the units of the account (mph or kmph).
+Multiple of:
+0.01
+drivingTimeCorrectionFactor
+number<float>
+Default:
+1
+Multiple of:
+0.01
+costPerDistance
+number<float>
+In the units of the account (per mile or per km)
+Multiple of:
+0.01
+activationCost
+number<float>
+Multiple of:
+0.01
+costPerOrder
+number<float>
+Multiple of:
+0.01
+capacity1
+number<float>
+Multiple of:
+0.001
+capacity2
+number<float>
+Multiple of:
+0.001
+runDistanceLimit
+number<float>
+In the units of the account (km or miles)
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+assignedDriverReference
+string
+territoriesReferences
+array[string]
+comment
+string
+manufacturer
+string
+VIN
+string
+isStandDown
+boolean
+isArchived
+boolean
+color
+string
+The color in RGB HEX format with a leading "#"
+>= 7 characters
+<= 7 characters
+Example:
+#FF00AA
+Responses
+
+200
+
+OK
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+
+data
+VehicleDetails
+referenceNumber
+string
+required
+Called External ID in UI
+name
+string
+required
+The default name of the vehicle
+assignedDevice
+string
+trackingSource
+string
+Allowed values:
+TOMTOM
+WIALON
+MAXOPTRA
+vehicleRequirementsReferences
+array[string]
+A list of references (abbreviations) of vehicle requirements the vehicle supports.
+maxSpeed
+number<float>
+In the units of the account (mph or kmph).
+Multiple of:
+0.01
+drivingTimeCorrectionFactor
+number<float>
+Default:
+1
+Multiple of:
+0.01
+costPerDistance
+number<float>
+In the units of the account (per mile or per km)
+Multiple of:
+0.01
+activationCost
+number<float>
+Multiple of:
+0.01
+costPerOrder
+number<float>
+Multiple of:
+0.01
+capacity1
+number<float>
+Multiple of:
+0.001
+capacity2
+number<float>
+Multiple of:
+0.001
+runDistanceLimit
+number<float>
+In the units of the account (km or miles)
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+assignedDriverReference
+string
+assignedDriverName
+string
+territoriesReferences
+array[string]
+comment
+string
+manufacturer
+string
+VIN
+string
+isStandDown
+boolean
+isArchived
+boolean
+color
+string
+The color in RGB HEX format with a leading "#"
+>= 7 characters
+<= 7 characters
+Example:
+#FF00AA
+Token
+:
+
+
+{
+  "referenceNumber": "string",
+  "name": "string",
+  "assignedDevice": "string",
+  "trackingSource": "TOMTOM",
+  "vehicleRequirementsReferences": [
+    "string"
+  ],
+  "maxSpeed": -3.402823669209385e+38,
+  "drivingTimeCorrectionFactor": 1,
+  "costPerDistance": -3.402823669209385e+38,
+  "activationCost": -3.402823669209385e+38,
+  "costPerOrder": -3.402823669209385e+38,
+  "capacity1": -3.402823669209385e+38,
+  "capacity2": -3.402823669209385e+38,
+  "runDistanceLimit": -3.402823669209385e+38,
+  "distributionCentreReference": "string",
+  "assignedDriverReference": "string",
+  "territoriesReferences": [
+    "string"
+  ],
+  "comment": "string",
+  "manufacturer": "string",
+  "VIN": "string",
+  "isStandDown": true,
+  "isArchived": true,
+  "color": "#FF00AA"
+}
+Send API Request
+
+
+Live Server
+
+curl --request POST \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/vehicles \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "referenceNumber": "string",
+  "name": "string",
+  "assignedDevice": "string",
+  "trackingSource": "TOMTOM",
+  "vehicleRequirementsReferences": [
+    "string"
+  ],
+  "maxSpeed": -3.402823669209385e+38,
+  "drivingTimeCorrectionFactor": 1,
+  "costPerDistance": -3.402823669209385e+38,
+  "activationCost": -3.402823669209385e+38,
+  "costPerOrder": -3.402823669209385e+38,
+  "capacity1": -3.402823669209385e+38,
+  "capacity2": -3.402823669209385e+38,
+  "runDistanceLimit": -3.402823669209385e+38,
+  "distributionCentreReference": "string",
+  "assignedDriverReference": "string",
+  "territoriesReferences": [
+    "string"
+  ],
+  "comment": "string",
+  "manufacturer": "string",
+  "VIN": "string",
+  "isStandDown": true,
+  "isArchived": true,
+  "color": "#FF00AA"
+}'
+{
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ],
+  "data": {
+    "referenceNumber": "string",
+    "name": "string",
+    "assignedDevice": "string",
+    "trackingSource": "TOMTOM",
+    "vehicleRequirementsReferences": [
+      "string"
+    ],
+    "maxSpeed": 0,
+    "drivingTimeCorrectionFactor": 1,
+    "costPerDistance": 0,
+    "activationCost": 0,
+    "costPerOrder": 0,
+    "capacity1": 0,
+    "capacity2": 0,
+    "runDistanceLimit": 0,
+    "distributionCentreReference": "string",
+    "distributionCentreName": "string",
+    "assignedDriverReference": "string",
+    "assignedDriverName": "string",
+    "territoriesReferences": [
+      "string"
+    ],
+    "comment": "string",
+    "manufacturer": "string",
+    "VIN": "string",
+    "isStandDown": true,
+    "isArchived": true,
+    "color": "#FF00AA"
+  }
+}
+
+Get schedule for a distribution centre
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/dc/{dcReference}/{shiftDate}
+Get allocated schedule
+Request
+
+Path Parameters
+
+dcReference
+string
+required
+The reference of the distribution centre
+shiftDate
+string<date>
+required
+The date to which shifts in the schedule belong to. Equivalent to the date selected on the planning screen.
+Example:
+2021-04-30
+Query Parameters
+
+driverReference
+string
+if you want to export a schedule for just one driver - provide their reference here. If driver's reference is provided, dcReference is no longer mandatory
+vehicleReference
+string
+if you want to export a schedule for just one vehicle - provide it's reference here. If vehicle's reference is provided, dcReference is no longer mandatory
+Responses
+
+200
+
+A successful response
+Body
+
+
+
+application/json
+
+responses
+/
+200
+An object representing a schedule, which is a collection of driver shifts
+
+driverShifts
+array[Shift]
+driverName
+string
+driverReference
+string
+vehicleName
+string
+vehicleReference
+string
+shiftDate
+string<date>
+shiftStartTime
+string<date-time>
+shiftEndTime
+string<date-time>
+
+runs
+array[Run]
+An object representing one run.
+totalWorkingTime
+integer
+The total time the driver works in that shift in seconds.
+totalDrivingTime
+integer
+The total time the driver is driving in the shift, in seconds.
+totalDistance
+number
+The total distance driven in the shift. In kilometers or miles, depending on the account settings.
+Token
+:
+
+dcReference*
+:
+
+shiftDate*
+:
+
+driverReference
+:
+
+vehicleReference
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/dc/{dcReference}/{shiftDate} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "driverShifts": [
+    {
+      "driverName": "string",
+      "driverReference": "string",
+      "vehicleName": "string",
+      "vehicleReference": "string",
+      "shiftDate": "2019-08-24",
+      "shiftStartTime": "2019-08-24T14:15:22Z",
+      "shiftEndTime": "2019-08-24T14:15:22Z",
+      "runs": [
+        {
+          "plannedLoadingStartTime": "2019-08-24T14:15:22Z",
+          "plannedDepartureTime": "2019-08-24T14:15:22Z",
+          "plannedReturnStartTime": "2019-08-24T14:15:22Z",
+          "plannedCompletionTime": "2019-08-24T14:15:22Z",
+          "totalOrders": 0,
+          "totalDuration": 0,
+          "totalDistance": 0,
+          "totalCapacity1": 0,
+          "totalCapacity2": 0,
+          "allocations": [
+            {
+              "orderReference": "string",
+              "customerLocationName": "string",
+              "customerLocationAddress": "string",
+              "latitude": 0,
+              "longitude": 0,
+              "plannedDrivingStartTime": "2019-08-24T14:15:22Z",
+              "plannedArrivalTime": "2019-08-24T14:15:22Z",
+              "plannedCompletionTime": "2019-08-24T14:15:22Z",
+              "status": "string",
+              "sequenceNumber": 0,
+              "task": "DELIVERY"
+            }
+          ],
+          "isLocked": true,
+          "reference": "4381e86f099f4bce922c2485c2398aa7",
+          "runNumber": 0,
+          "totalDeliveries": 0,
+          "totalCollections": 0
+        }
+      ],
+      "totalWorkingTime": 0,
+      "totalDrivingTime": 0,
+      "totalDistance": 0
+    }
+  ]
+}
+
+Unallocate all scheduled orders for DC
+DELETE
+https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/dc/{dcReference}/{shiftDate}
+Unallocate all scheduled orders from DC for shiftDate. Async operation. To track the progress please read 'Working with ASYNC actions'
+Request
+
+Path Parameters
+
+dcReference
+string
+required
+The reference of the distribution centre
+shiftDate
+string<date>
+required
+The date to which shifts in the schedule belong to. Equivalent to the date selected on the planning screen.
+Example:
+2021-04-30
+Responses
+
+200
+
+Started to unallocate orders
+Body
+
+
+
+application/json
+
+taskReference
+string
+operationReference
+string
+Token
+:
+
+dcReference*
+:
+
+shiftDate*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request DELETE \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/dc/{dcReference}/{shiftDate} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "taskReference": "string",
+  "operationReference": "string"
+}
+
+
+Import schedules for a distribution centre
+POST
+https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/dc/{dcReference}/{shiftDate}
+Import schedules for a Distribution centre on Shift Date Import clears all previous orders on resource and plans the orders according to the sent sequence Either vehicle reference or driver reference can be used for indetifying a resource for schedule
+
+To track the progress please read 'Working with ASYNC actions'
+Request
+
+Path Parameters
+
+dcReference
+string
+required
+The reference of the distribution centre
+shiftDate
+string<date>
+required
+The date to which shifts in the schedule belong to. Equivalent to the date selected on the planning screen.
+Example:
+2021-04-30
+Body
+
+
+
+application/json
+
+
+schedules
+array[ScheduleImportRecord]
+Array of schedules to import
+driverReference
+string or null
+vehicleReference
+string or null
+orderReferences
+array[string]
+required
+resequence
+boolean
+Default:
+false
+resequenceModifiedRuns
+boolean
+If this setting is true - when an order is already allocated to an existing run - it will be automatically unallocated and the run will be re-sequenced
+Default:
+false
+Responses
+
+200
+
+Started clearing the schedule and plan orders to vehicles
+Body
+
+
+
+application/json
+
+responses
+/
+200
+taskReference
+string
+operationReference
+string
+Token
+:
+
+dcReference*
+:
+
+shiftDate*
+:
+
+
+{
+  "schedules": [
+    {
+      "driverReference": "string",
+      "vehicleReference": "string",
+      "orderReferences": [
+        "string"
+      ],
+      "resequence": false
+    }
+  ],
+  "resequenceModifiedRuns": false
+}
+Send API Request
+
+
+Live Server
+
+curl --request POST \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/dc/{dcReference}/{shiftDate} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "schedules": [
+    {
+      "driverReference": "string",
+      "vehicleReference": "string",
+      "orderReferences": [
+        "string"
+      ],
+      "resequence": false
+    }
+  ],
+  "resequenceModifiedRuns": false
+}'
+{
+  "taskReference": "string",
+  "operationReference": "string"
+}
+
+
+Get schedule for a vehicle
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/vehicle/{vehicleReference}/{shiftDate}
+Request
+
+Path Parameters
+
+shiftDate
+string<date>
+required
+The date to which shifts in the schedule belong to. Equivalent to the date selected on the planning screen.
+Example:
+2021-04-30
+vehicleReference
+string
+required
+The reference number of the vehicle
+Responses
+
+200
+
+OK
+Body
+
+
+
+application/json
+
+responses
+/
+200
+An object representing a schedule, which is a collection of driver shifts
+
+driverShifts
+array[Shift]
+driverName
+string
+driverReference
+string
+vehicleName
+string
+vehicleReference
+string
+shiftDate
+string<date>
+shiftStartTime
+string<date-time>
+shiftEndTime
+string<date-time>
+
+runs
+array[Run]
+An object representing one run.
+totalWorkingTime
+integer
+The total time the driver works in that shift in seconds.
+totalDrivingTime
+integer
+The total time the driver is driving in the shift, in seconds.
+totalDistance
+number
+The total distance driven in the shift. In kilometers or miles, depending on the account settings.
+Token
+:
+
+shiftDate*
+:
+
+vehicleReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/vehicle/{vehicleReference}/{shiftDate} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "driverShifts": [
+    {
+      "driverName": "string",
+      "driverReference": "string",
+      "vehicleName": "string",
+      "vehicleReference": "string",
+      "shiftDate": "2019-08-24",
+      "shiftStartTime": "2019-08-24T14:15:22Z",
+      "shiftEndTime": "2019-08-24T14:15:22Z",
+      "runs": [
+        {
+          "plannedLoadingStartTime": "2019-08-24T14:15:22Z",
+          "plannedDepartureTime": "2019-08-24T14:15:22Z",
+          "plannedReturnStartTime": "2019-08-24T14:15:22Z",
+          "plannedCompletionTime": "2019-08-24T14:15:22Z",
+          "totalOrders": 0,
+          "totalDuration": 0,
+          "totalDistance": 0,
+          "totalCapacity1": 0,
+          "totalCapacity2": 0,
+          "allocations": [
+            {
+              "orderReference": "string",
+              "customerLocationName": "string",
+              "customerLocationAddress": "string",
+              "latitude": 0,
+              "longitude": 0,
+              "plannedDrivingStartTime": "2019-08-24T14:15:22Z",
+              "plannedArrivalTime": "2019-08-24T14:15:22Z",
+              "plannedCompletionTime": "2019-08-24T14:15:22Z",
+              "status": "string",
+              "sequenceNumber": 0,
+              "task": "DELIVERY"
+            }
+          ],
+          "isLocked": true,
+          "reference": "4381e86f099f4bce922c2485c2398aa7",
+          "runNumber": 0,
+          "totalDeliveries": 0,
+          "totalCollections": 0
+        }
+      ],
+      "totalWorkingTime": 0,
+      "totalDrivingTime": 0,
+      "totalDistance": 0
+    }
+  ]
+}
+
+Get schedule for a driver
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/driver/{driverReference}/{shiftDate}
+Request
+
+Path Parameters
+
+driverReference
+string
+required
+The reference number of the driver
+shiftDate
+string<date>
+required
+The date to which shifts in the schedule belong to. Equivalent to the date selected on the planning screen.
+Example:
+2021-04-30
+Responses
+
+200
+
+OK
+Body
+
+
+
+application/json
+
+responses
+/
+200
+An object representing a schedule, which is a collection of driver shifts
+
+driverShifts
+array[Shift]
+driverName
+string
+driverReference
+string
+vehicleName
+string
+vehicleReference
+string
+shiftDate
+string<date>
+shiftStartTime
+string<date-time>
+shiftEndTime
+string<date-time>
+
+runs
+array[Run]
+An object representing one run.
+totalWorkingTime
+integer
+The total time the driver works in that shift in seconds.
+totalDrivingTime
+integer
+The total time the driver is driving in the shift, in seconds.
+totalDistance
+number
+The total distance driven in the shift. In kilometers or miles, depending on the account settings.
+Token
+:
+
+driverReference*
+:
+
+shiftDate*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/driver/{driverReference}/{shiftDate} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "driverShifts": [
+    {
+      "driverName": "string",
+      "driverReference": "string",
+      "vehicleName": "string",
+      "vehicleReference": "string",
+      "shiftDate": "2019-08-24",
+      "shiftStartTime": "2019-08-24T14:15:22Z",
+      "shiftEndTime": "2019-08-24T14:15:22Z",
+      "runs": [
+        {
+          "plannedLoadingStartTime": "2019-08-24T14:15:22Z",
+          "plannedDepartureTime": "2019-08-24T14:15:22Z",
+          "plannedReturnStartTime": "2019-08-24T14:15:22Z",
+          "plannedCompletionTime": "2019-08-24T14:15:22Z",
+          "totalOrders": 0,
+          "totalDuration": 0,
+          "totalDistance": 0,
+          "totalCapacity1": 0,
+          "totalCapacity2": 0,
+          "allocations": [
+            {
+              "orderReference": "string",
+              "customerLocationName": "string",
+              "customerLocationAddress": "string",
+              "latitude": 0,
+              "longitude": 0,
+              "plannedDrivingStartTime": "2019-08-24T14:15:22Z",
+              "plannedArrivalTime": "2019-08-24T14:15:22Z",
+              "plannedCompletionTime": "2019-08-24T14:15:22Z",
+              "status": "string",
+              "sequenceNumber": 0,
+              "task": "DELIVERY"
+            }
+          ],
+          "isLocked": true,
+          "reference": "4381e86f099f4bce922c2485c2398aa7",
+          "runNumber": 0,
+          "totalDeliveries": 0,
+          "totalCollections": 0
+        }
+      ],
+      "totalWorkingTime": 0,
+      "totalDrivingTime": 0,
+      "totalDistance": 0
+    }
+  ]
+}
+
+
+Unallocate order
+DELETE
+https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/order/{orderReference}
+Unallocate scheduled order. Async operation. To track the progress please read 'Working with ASYNC actions'
+Request
+
+Path Parameters
+
+orderReference
+string
+required
+Responses
+
+200
+
+Started to unallocate order
+Body
+
+
+
+application/json
+
+taskReference
+string
+operationReference
+string
+Token
+:
+
+orderReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request DELETE \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/order/{orderReference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "taskReference": "string",
+  "operationReference": "string"
+}
+
+
+Unallocate run
+DELETE
+https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/run/{runReference}
+Unallocate scheduled run. Async operation. To track the progress please read 'Working with ASYNC actions'
+Request
+
+Path Parameters
+
+runReference
+string
+required
+Responses
+
+200
+
+Started to unallocate run
+Body
+
+
+
+application/json
+
+taskReference
+string
+operationReference
+string
+Token
+:
+
+runReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request DELETE \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/schedules/run/{runReference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "taskReference": "string",
+  "operationReference": "string"
+}
+
+Create a subscription
+POST
+https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions
+Create a Webhook subscription for specified event type.
+
+Note that duplicate subscriptions cannot be created. Note that there cannot be more than 5 subscriptions to specific event type.
+Request
+
+Body
+
+
+
+application/json
+
+Input body to create subscription.
+
+Subscriptions API details.
+Input object to create Webhook Subscription for a specified event.
+event
+any
+required
+Supported event types for subscriptions
+Allowed values:
+ORDER_STATUS_UPDATED
+SCHEDULE_UPDATED
+url
+string<uri>
+required
+Example:
+https://server.domain.com
+secret
+string
+required
+<= 31 characters
+Example:
+some-secret
+filterStatus
+any
+Optional filter for this subscription. Usable only if event type is ORDER_STATUS_UPDATED.Show all...
+Allowed values:
+UNALLOCATED
+ALLOCATED
+SENDING
+SENT
+ACCEPTED
+DELIVERED
+COMPLETED
+FAILED
+DRIVING
+ARRIVED
+IN_PROGRESS
+WORK_COMPLETED
+DEPARTED
+SUSPENDED
+LOCKED
+Example:
+COMPLETED
+Responses
+
+200
+
+OK
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+Subscription
+reference
+string
+required
+event
+any
+required
+Supported event types for subscriptions
+Allowed values:
+ORDER_STATUS_UPDATED
+SCHEDULE_UPDATED
+url
+string<uri>
+required
+Example:
+https://server.domain.com
+Token
+:
+
+
+{
+  "event": "ORDER_STATUS_UPDATED",
+  "url": "https://server.domain.com",
+  "secret": "some-secret",
+  "filterStatus": "UNALLOCATED"
+}
+Send API Request
+
+
+Live Server
+
+curl --request POST \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "event": "ORDER_STATUS_UPDATED",
+  "url": "https://server.domain.com",
+  "secret": "some-secret",
+  "filterStatus": "UNALLOCATED"
+}'
+{
+  "data": {
+    "reference": "string",
+    "event": "ORDER_STATUS_UPDATED",
+    "url": "https://server.domain.com"
+  }
+}
+
+Get a list of subscriptions
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions
+Request
+
+Responses
+
+200
+
+OK
+Body
+
+
+
+application/json
+
+
+data
+array[Subscription]
+reference
+string
+required
+event
+any
+required
+Supported event types for subscriptions
+Allowed values:
+ORDER_STATUS_UPDATED
+SCHEDULE_UPDATED
+url
+string<uri>
+required
+Example:
+https://server.domain.com
+Token
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": [
+    {
+      "reference": "string",
+      "event": "ORDER_STATUS_UPDATED",
+      "url": "https://server.domain.com"
+    }
+  ]
+}
+
+Get a subscription
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions/{reference}
+Return subscription by reference if it exists
+Request
+
+Path Parameters
+
+reference
+string
+required
+Responses
+
+200
+
+OK
+Body
+
+
+
+application/json
+
+
+data
+Subscription
+reference
+string
+required
+event
+any
+required
+Supported event types for subscriptions
+Allowed values:
+ORDER_STATUS_UPDATED
+SCHEDULE_UPDATED
+url
+string<uri>
+required
+Example:
+https://server.domain.com
+Token
+:
+
+reference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "reference": "string",
+    "event": "ORDER_STATUS_UPDATED",
+    "url": "https://server.domain.com"
+  }
+}
+
+Delete a subscription
+DELETE
+https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions/{reference}
+Deletes a subscription by reference if it exists
+Request
+
+Path Parameters
+
+reference
+string
+required
+Responses
+
+200
+
+OK
+Token
+:
+
+reference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request DELETE \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+
+  Patch a subscription
+PATCH
+https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions/{reference}
+Patch subscription by reference
+Request
+
+Path Parameters
+
+reference
+string
+required
+Body
+
+
+
+application/json
+
+array of:
+op
+string
+required
+Allowed values:
+add
+remove
+replace
+copy
+move
+test
+Example:
+replace
+path
+string
+required
+Example:
+/clientName
+value
+string
+required
+Example:
+Some Name
+Responses
+
+200
+
+OK
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+Subscription
+reference
+string
+required
+event
+any
+required
+Supported event types for subscriptions
+Allowed values:
+ORDER_STATUS_UPDATED
+SCHEDULE_UPDATED
+url
+string<uri>
+required
+Example:
+https://server.domain.com
+Token
+:
+
+reference*
+:
+
+
+[
+  {
+    "op": "replace",
+    "path": "/clientName",
+    "value": "Some Name"
+  }
+]
+Send API Request
+
+
+Live Server
+
+curl --request PATCH \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions/{reference} \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '[
+  {
+    "op": "replace",
+    "path": "/clientName",
+    "value": "Some Name"
+  }
+]'
+{
+  "data": {
+    "reference": "string",
+    "event": "ORDER_STATUS_UPDATED",
+    "url": "https://server.domain.com"
+  }
+}
+
+Get subscription communication log
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions/{reference}/log
+Get all communications logs regarding your subscription
+Request
+
+Path Parameters
+
+reference
+string
+required
+Subscription reference
+Responses
+
+200
+
+OK
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+array[SubscriptionRequestLog]
+responseCode
+integer
+Your server response code on event
+Example:
+200
+event
+any
+Supported event types for subscriptions
+Allowed values:
+ORDER_STATUS_UPDATED
+SCHEDULE_UPDATED
+dateTime
+string<date-time>
+Exact timestamp when request for your server was sent
+payload
+string
+Data package that was sent to your server
+response
+string
+Response of your server in text format. Can be empty
+Token
+:
+
+reference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/subscriptions/{reference}/log \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": [
+    {
+      "responseCode": 200,
+      "event": "ORDER_STATUS_UPDATED",
+      "dateTime": "2019-08-24T14:15:22Z",
+      "payload": "string",
+      "response": "string"
+    }
+  ]
+}
+
+Lock a run
+POST
+https://yourmaxoptraaccount.maxoptra.com/api/v6/runs/{runReference}/lock
+Lock a particular run by it's reference number.
+
+The run reference number can be received from from one of the GET /schedules/ methods.
+Request
+
+Path Parameters
+
+runReference
+string
+required
+Responses
+
+200
+
+A run was successfully locked or was already locked before.
+Token
+:
+
+runReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request POST \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/runs/{runReference}/lock \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json'
+
+  Unlock a run
+POST
+https://yourmaxoptraaccount.maxoptra.com/api/v6/runs/{runReference}/unlock
+Unlock a run by it's reference number.
+
+The run reference number can be received from from one of the GET /schedules/ methods.
+Request
+
+Path Parameters
+
+runReference
+string
+required
+Responses
+
+200
+
+The run was successfully unlocked
+Token
+:
+
+runReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request POST \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/runs/{runReference}/unlock \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json'
+
+Send a run details to driver
+POST
+https://yourmaxoptraaccount.maxoptra.com/api/v6/runs/{reference}/send
+Send a specified run details to driver, to be able to send the run - you need to lock it first, if there is any changes in the locked run - then you can send it right away
+
+The run reference number can be received from from one of the GET /schedules/ methods.
+Request
+
+Path Parameters
+
+reference
+string
+required
+Run reference
+Responses
+
+200
+
+Run is successfuly sent or already in sent state
+Token
+:
+
+reference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request POST \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/runs/{reference}/send \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json'
+
+Get loading info for run
+GET
+https://yourmaxoptraaccount.maxoptra.com/api/v6/runs/{runReference}/loading
+Returns loading status of a run and individual loading statuses of orders in the run.
+
+Loading management addon should be enabled for the account. If not then system will respond with 412 error code and Addon not enabled error.
+
+If run does not contain any orders with order items then system will still respond with code 200 and NOT_LOADED status.
+
+If order not yet sent to loading or loading process is not started yet then system will respond with NOT_LOADED status.
+Request
+
+Path Parameters
+
+runReference
+string
+required
+Run Reference
+Responses
+
+200
+
+OK
+Body
+
+
+
+application/json
+
+responses
+/
+200
+
+data
+RunLoadingInfo
+An object containing run loading status and individual loading statuses of the orders in this run
+runReference
+string
+runLoadingStatus
+any
+Loading Status of Order or Run for Loading Management
+Allowed values:
+UNKNOWN
+NOT_LOADED
+PARTIALLY_LOADED
+LOADED
+Example:
+LOADED
+
+ordersLoading
+array[OrderLoadingStatusShort]
+Token
+:
+
+runReference*
+:
+
+Send API Request
+
+
+Live Server
+
+curl --request GET \
+  --url https://yourmaxoptraaccount.maxoptra.com/api/v6/runs/{runReference}/loading \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123'
+{
+  "data": {
+    "runReference": "string",
+    "runLoadingStatus": "LOADED",
+    "ordersLoading": [
+      {
+        "orderReference": "string",
+        "orderLoadingStatus": "LOADED"
+      }
+    ]
+  }
+}
+
+
+

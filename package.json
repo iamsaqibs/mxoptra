@@ -1,0 +1,15 @@
+{
+    "name": "maxoptra-clone",
+    "version": "1.0.0",
+    "description": "Maxoptra API Documentation Generator",
+    "main": "fetch_docs.js",
+    "scripts": {
+        "start": "node fetch_docs.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^1.6.0"
+    }
+}

@@ -1,0 +1,2272 @@
+Location
+A detailed view of a single customer location
+{
+  "referenceNumber": "abc123",
+  "name": "Spring fountains Inc.",
+  "address": "55 Springs road, BR1 4FG, Brighton",
+  "w3wAddress": "///rival.mirror.helps",
+  "postcode": "BR1 4FG",
+  "latitude": 0,
+  "longitude": 0,
+  "isVerified": true,
+  "isValid": true,
+  "description": "string",
+  "clientName": "null",
+  "primaryTelephone": "string",
+  "secondaryTelephone": "string",
+  "email": "string",
+  "website": "string",
+  "settings": {
+    "allowSMS": true,
+    "allowEmail": true,
+    "fixedTimePerAddress": 0,
+    "fixedTimePerOrder": 0,
+    "timePerCapacityDelivery": 0,
+    "preferredDriverReferences": [
+      "string"
+    ],
+    "preferredDriverNames": [
+      "string"
+    ],
+    "vehicleRequirementsReferences": [
+      "string"
+    ]
+  },
+  "availability": {
+    "monday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "tuesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "wednesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "thursday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "friday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "saturday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "sunday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "holiday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "default": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  },
+  "created": "2019-08-24T14:15:22Z",
+  "updated": "2019-08-24T14:15:22Z"
+}
+availability
+.
+default
+referenceNumber
+string
+required
+Example:
+abc123
+name
+string
+required
+Example:
+Spring fountains Inc.
+address
+string
+required
+Example:
+55 Springs road, BR1 4FG, Brighton
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+postcode
+string
+Example:
+BR1 4FG
+latitude
+number
+longitude
+number
+isVerified
+boolean
+read-only
+isValid
+boolean
+read-only
+description
+string
+clientName
+string
+Example:
+null
+primaryTelephone
+string
+secondaryTelephone
+string
+email
+string
+website
+string
+
+settings
+object
+allowSMS
+boolean
+allowEmail
+boolean
+fixedTimePerAddress
+number
+fixedTimePerOrder
+number
+timePerCapacityDelivery
+number
+preferredDriverReferences
+array[string]
+preferredDriverNames
+array[string]
+read-only
+vehicleRequirementsReferences
+array[string]
+
+availability
+object
+When creating or updating, if default is provided, all days that are not specified explicitly receive the default window.Show all...
+
+monday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+tuesday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+wednesday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+thursday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+friday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+saturday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+sunday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+holiday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+default
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+created
+string<date-time>
+The datetime when this records was created.
+updated
+string<date-time>
+The datetime when this record was last updated.
+
+
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+{
+  "start": "2019-08-24T14:15:22Z",
+  "end": "2019-08-24T14:15:22Z"
+}
+start
+string<date-time>
+end
+string<date-time>
+
+
+Attachment
+An object representing an photo attachment to an order
+{
+  "attachmentReferenceNumber": "string",
+  "orderReferenceNumber": "string",
+  "comment": "string",
+  "imageSmall": "http://example.com",
+  "imageFull": "http://example.com"
+}
+attachmentReferenceNumber
+string
+orderReferenceNumber
+string
+comment
+string
+imageSmall
+string<uri>
+imageFull
+string<uri>
+
+OrderItem
+An object that represents an order item.
+{
+  "itemReferenceNumber": "string",
+  "orderReferenceNumber": "string",
+  "name": "string",
+  "description": "string",
+  "barcode": "string",
+  "status": "CHECKED",
+  "rejectReason": "string",
+  "rejectComment": "string",
+  "pricePerUnit": 0,
+  "plannedQuantity": 0,
+  "factQuantity": 0,
+  "totalAmount": 0,
+  "height": 0,
+  "width": 0,
+  "length": 0,
+  "weight": 0,
+  "volume": 0
+}
+itemReferenceNumber
+string
+orderReferenceNumber
+string
+name
+string
+description
+string
+barcode
+string
+status
+string
+Allowed values:
+CHECKED
+UNCHECKED
+REJECTED
+rejectReason
+string
+rejectComment
+string
+pricePerUnit
+number
+plannedQuantity
+integer
+factQuantity
+integer
+totalAmount
+number
+height
+number<float>
+>= 0
+width
+number<float>
+>= 0
+length
+number<float>
+>= 0
+weight
+number<float>
+>= 0
+volume
+number<float>
+>= 0
+
+
+OrderStatus
+{
+  "orderReferenceNumber": "string",
+  "distributionCentreReferene": "string",
+  "distributionCentreName": "string",
+  "assignedDriverRefeence": "string",
+  "assignedDriverName": "string",
+  "assignedVehicleReference": "string",
+  "assignedVehicleName": "string",
+  "plannedArrivalTime": "2019-08-24T14:15:22Z",
+  "plannedCompletionTime": "2019-08-24T14:15:22Z",
+  "stopNumber": 0,
+  "totalStopsInRun": 0,
+  "eta": "2019-08-24T14:15:22Z",
+  "factArrivalTimeGPS": "2019-08-24T14:15:22Z",
+  "factCompletionTimeGPS": "2019-08-24T14:15:22Z",
+  "factArrivalTimeReported": "2019-08-24T14:15:22Z",
+  "factCompletionTimeReported": "2019-08-24T14:15:22Z",
+  "driverCurrentPosition": {
+    "latitude": 0,
+    "longitude": 0
+  },
+  "failReason": "string",
+  "failComment": "string",
+  "attachments": [
+    {
+      "attachmentReferenceNumber": "string",
+      "orderReferenceNumber": "string",
+      "comment": "string",
+      "imageSmall": "http://example.com",
+      "imageFull": "http://example.com"
+    }
+  ],
+  "orderItems": [
+    {
+      "itemReferenceNumber": "string",
+      "orderReferenceNumber": "string",
+      "name": "string",
+      "description": "string",
+      "barcode": "string",
+      "status": "CHECKED",
+      "rejectReason": "string",
+      "rejectComment": "string",
+      "pricePerUnit": 0,
+      "plannedQuantity": 0,
+      "factQuantity": 0,
+      "totalAmount": 0,
+      "height": 0,
+      "width": 0,
+      "length": 0,
+      "weight": 0,
+      "volume": 0
+    }
+  ],
+  "plannedItemsCount": 0,
+  "factItemsCount": 0,
+  "ItemsStatus": "IN_FULL",
+  "signatoryName": "string",
+  "signatureTime": "2019-08-24T14:15:22Z",
+  "signatureImage": "string"
+}
+orderReferenceNumber
+string
+distributionCentreReferene
+string
+distributionCentreName
+string
+assignedDriverRefeence
+string
+assignedDriverName
+string
+assignedVehicleReference
+string
+assignedVehicleName
+string
+plannedArrivalTime
+string<date-time>
+plannedCompletionTime
+string<date-time>
+stopNumber
+integer
+totalStopsInRun
+integer
+eta
+string<date-time>
+factArrivalTimeGPS
+string<date-time>
+factCompletionTimeGPS
+string<date-time>
+factArrivalTimeReported
+string<date-time>
+factCompletionTimeReported
+string<date-time>
+
+driverCurrentPosition
+GeoPosition
+An object that describes a geographical position with latitude and longitude
+latitude
+number
+longitude
+number
+failReason
+string
+failComment
+string
+
+attachments
+array[Attachment]
+An object representing an photo attachment to an order
+attachmentReferenceNumber
+string
+orderReferenceNumber
+string
+comment
+string
+imageSmall
+string<uri>
+imageFull
+string<uri>
+
+orderItems
+array[OrderItem]
+An object that represents an order item.
+itemReferenceNumber
+string
+orderReferenceNumber
+string
+name
+string
+description
+string
+barcode
+string
+status
+string
+Allowed values:
+CHECKED
+UNCHECKED
+REJECTED
+rejectReason
+string
+rejectComment
+string
+pricePerUnit
+number
+plannedQuantity
+integer
+factQuantity
+integer
+totalAmount
+number
+height
+number<float>
+>= 0
+width
+number<float>
+>= 0
+length
+number<float>
+>= 0
+weight
+number<float>
+>= 0
+volume
+number<float>
+>= 0
+plannedItemsCount
+integer
+factItemsCount
+integer
+ItemsStatus
+string
+Allowed values:
+IN_FULL
+PARTIAL
+UNSUCCESSFUL
+signatoryName
+string
+signatureTime
+string<date-time>
+signatureImage
+string
+A base64-encoded signature image in PNG
+
+
+GeoPosition
+An object that describes a geographical position with latitude and longitude
+{
+  "latitude": 0,
+  "longitude": 0
+}
+latitude
+number
+longitude
+number
+
+LocationSummary
+A short version of the location model to be used in list methods like GET /locations
+{
+  "referenceNumber": "abc123",
+  "name": "Spring fountains Inc.",
+  "address": "55 Springs road, BR1 4FG, Brighton",
+  "w3wAddress": "///rival.mirror.helps",
+  "postcode": "BR1 4FG",
+  "latitude": 0,
+  "longitude": 0,
+  "clientName": "null",
+  "isVerified": true,
+  "isValid": true,
+  "created": "2019-08-24T14:15:22Z",
+  "updated": "2019-08-24T14:15:22Z"
+}
+referenceNumber
+string
+Example:
+abc123
+name
+string
+Example:
+Spring fountains Inc.
+address
+string
+Example:
+55 Springs road, BR1 4FG, Brighton
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+postcode
+string
+Example:
+BR1 4FG
+latitude
+number
+longitude
+number
+clientName
+string
+Example:
+null
+isVerified
+boolean
+read-only
+isValid
+boolean
+read-only
+created
+string<date-time>
+The datetime when this records was created.
+updated
+string<date-time>
+The datetime when this record was last updated.
+
+LocationUpdate
+A model used to send location details to the API to create or update a location.
+{
+  "referenceNumber": "abc123",
+  "name": "Spring fountains Inc.",
+  "address": "55 Springs road, BR1 4FG, Brighton",
+  "postcode": "BR1 4FG",
+  "latitude": 0,
+  "longitude": 0,
+  "description": "string",
+  "clientName": "null",
+  "primaryTelephone": "string",
+  "secondaryTelephone": "string",
+  "email": "string",
+  "website": "string",
+  "settings": {
+    "allowSMS": true,
+    "allowEmail": true,
+    "fixedTimePerAddress": 0,
+    "fixedTimePerOrder": 0,
+    "timePerCapacityDelivery": 0,
+    "preferredDriverReferences": [
+      "string"
+    ],
+    "vehicleRequirementsReferences": [
+      "string"
+    ]
+  },
+  "availability": {
+    "default": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "monday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "tuesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "wednesday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "thursday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "friday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "saturday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "sunday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    },
+    "holiday": {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  }
+}
+referenceNumber
+string
+Example:
+abc123
+name
+string
+Example:
+Spring fountains Inc.
+address
+string
+Example:
+55 Springs road, BR1 4FG, Brighton
+postcode
+string
+Example:
+BR1 4FG
+latitude
+number
+longitude
+number
+description
+string
+clientName
+string
+Example:
+null
+primaryTelephone
+string
+secondaryTelephone
+string
+email
+string
+website
+string
+
+settings
+object
+allowSMS
+boolean
+allowEmail
+boolean
+fixedTimePerAddress
+number
+fixedTimePerOrder
+number
+timePerCapacityDelivery
+number
+preferredDriverReferences
+array[string]
+vehicleRequirementsReferences
+array[string]
+
+availability
+object
+
+default
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+monday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+tuesday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+wednesday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+thursday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+friday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+saturday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+sunday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+holiday
+TimeWindow
+A time window object that represents a window of time (with no date information). Is used in time windows and availability windows
+
+Warning
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+{
+  "code": "string",
+  "name": "string",
+  "details": "string",
+  "field": "string"
+}
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+
+Error
+A model to represent an error that may be included a response to indicate a reason why a request cannot be processed or failed.
+{
+  "code": "string",
+  "name": "string",
+  "details": "string",
+  "field": "string"
+}
+code
+string
+The error code.
+name
+string
+The name of the error. The names of errors may change so please use the error code in your integration's code.
+details
+string
+Any additional relevant details, human-readable.
+field
+string
+(optional) The name of the field the error relates to.
+
+OrderExecutionInfo
+Information about how the order is executed. Includes the order's allocation information, status, real-time ETA, actual and reported times
+{
+  "orderReferenceNumber": "string",
+  "assignedDriverReference": "string",
+  "assignedDriverName": "string",
+  "assignedVehicleReference": "string",
+  "assignedVehicleName": "string",
+  "plannedArrivalTime": "2019-08-24T14:15:22Z",
+  "plannedCompletionTime": "2019-08-24T14:15:22Z",
+  "stopNumber": 0,
+  "totalStopsInRun": 0,
+  "eta": "2019-08-24T14:15:22Z",
+  "factArrivalTimeGPS": "2019-08-24T14:15:22Z",
+  "factCompletionTimeGPS": "2019-08-24T14:15:22Z",
+  "factArrivalTimeReported": "2019-08-24T14:15:22Z",
+  "factCompletionTimeReported": "2019-08-24T14:15:22Z",
+  "failReason": "string",
+  "failComment": "string",
+  "status": "string",
+  "runNumber": 0
+}
+orderReferenceNumber
+string
+assignedDriverReference
+string
+assignedDriverName
+string
+assignedVehicleReference
+string
+assignedVehicleName
+string
+plannedArrivalTime
+string<date-time>
+plannedCompletionTime
+string<date-time>
+stopNumber
+integer
+totalStopsInRun
+integer
+eta
+string<date-time>
+factArrivalTimeGPS
+string<date-time>
+factCompletionTimeGPS
+string<date-time>
+factArrivalTimeReported
+string<date-time>
+factCompletionTimeReported
+string<date-time>
+failReason
+string
+failComment
+string
+status
+string
+runNumber
+integer
+
+OrderItemsInfo
+An object containing items information for a particular order.
+{
+  "orderReferenceNumber": "string",
+  "orderItems": [
+    {
+      "itemReferenceNumber": "string",
+      "orderReferenceNumber": "string",
+      "name": "string",
+      "description": "string",
+      "barcode": "string",
+      "status": "CHECKED",
+      "rejectReason": "string",
+      "rejectComment": "string",
+      "pricePerUnit": 0,
+      "plannedQuantity": 0,
+      "factQuantity": 0,
+      "totalAmount": 0,
+      "height": 0,
+      "width": 0,
+      "length": 0,
+      "weight": 0,
+      "volume": 0
+    }
+  ],
+  "plannedItemsCount": 0,
+  "factItemsCount": 0,
+  "ItemsStatus": "IN_FULL"
+}
+orderReferenceNumber
+string
+
+orderItems
+array[OrderItem]
+An object that represents an order item.
+itemReferenceNumber
+string
+orderReferenceNumber
+string
+name
+string
+description
+string
+barcode
+string
+status
+string
+Allowed values:
+CHECKED
+UNCHECKED
+REJECTED
+rejectReason
+string
+rejectComment
+string
+pricePerUnit
+number
+plannedQuantity
+integer
+factQuantity
+integer
+totalAmount
+number
+height
+number<float>
+>= 0
+width
+number<float>
+>= 0
+length
+number<float>
+>= 0
+weight
+number<float>
+>= 0
+volume
+number<float>
+>= 0
+plannedItemsCount
+integer
+factItemsCount
+integer
+ItemsStatus
+string
+Allowed values:
+IN_FULL
+PARTIAL
+UNSUCCESSFUL
+
+OrderAttachmentsInfo
+A model containing information about attachments to an order
+{
+  "orderReferenceNumber": "string",
+  "attachments": [
+    {
+      "attachmentReferenceNumber": "string",
+      "orderReferenceNumber": "string",
+      "comment": "string",
+      "imageSmall": "http://example.com",
+      "imageFull": "http://example.com"
+    }
+  ]
+}
+orderReferenceNumber
+string
+
+attachments
+array[Attachment]
+An object representing an photo attachment to an order
+attachmentReferenceNumber
+string
+orderReferenceNumber
+string
+comment
+string
+imageSmall
+string<uri>
+imageFull
+string<uri>
+
+PODInfo
+A model containing the POD information of an order, including signature and its metadata.
+{
+  "orderReferenceNumber": "string",
+  "signatoryName": "string",
+  "signatureTime": "2019-08-24T14:15:22Z",
+  "signatureImage": "string"
+}
+orderReferenceNumber
+string
+signatoryName
+string
+signatureTime
+string<date-time>
+signatureImage
+string
+A base64-encoded signature image in PNG
+
+OrderTrackingInfo
+A model containing information that can be used to display the current position of the order.
+
+If the position is not available (e.g. because of the order status), currentPosition should be null.
+{
+  "orderReferenceNumber": "string",
+  "currentPosition": {
+    "latitude": 0,
+    "longitude": 0
+  },
+  "status": "string"
+}
+orderReferenceNumber
+string
+
+currentPosition
+GeoPosition
+An object that describes a geographical position with latitude and longitude
+latitude
+number
+longitude
+number
+status
+string
+
+VehicleDetails
+{
+  "referenceNumber": "string",
+  "name": "string",
+  "assignedDevice": "string",
+  "trackingSource": "TOMTOM",
+  "vehicleRequirementsReferences": [
+    "string"
+  ],
+  "maxSpeed": -3.402823669209385e+38,
+  "drivingTimeCorrectionFactor": 1,
+  "costPerDistance": -3.402823669209385e+38,
+  "activationCost": -3.402823669209385e+38,
+  "costPerOrder": -3.402823669209385e+38,
+  "capacity1": -3.402823669209385e+38,
+  "capacity2": -3.402823669209385e+38,
+  "runDistanceLimit": -3.402823669209385e+38,
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string",
+  "assignedDriverReference": "string",
+  "assignedDriverName": "string",
+  "territoriesReferences": [
+    "string"
+  ],
+  "comment": "string",
+  "manufacturer": "string",
+  "VIN": "string",
+  "isStandDown": true,
+  "isArchived": true,
+  "color": "#FF00AA"
+}
+color
+referenceNumber
+string
+required
+Called External ID in UI
+name
+string
+required
+The default name of the vehicle
+assignedDevice
+string
+trackingSource
+string
+Allowed values:
+TOMTOM
+WIALON
+MAXOPTRA
+vehicleRequirementsReferences
+array[string]
+A list of references (abbreviations) of vehicle requirements the vehicle supports.
+maxSpeed
+number<float>
+In the units of the account (mph or kmph).
+Multiple of:
+0.01
+drivingTimeCorrectionFactor
+number<float>
+Default:
+1
+Multiple of:
+0.01
+costPerDistance
+number<float>
+In the units of the account (per mile or per km)
+Multiple of:
+0.01
+activationCost
+number<float>
+Multiple of:
+0.01
+costPerOrder
+number<float>
+Multiple of:
+0.01
+capacity1
+number<float>
+Multiple of:
+0.001
+capacity2
+number<float>
+Multiple of:
+0.001
+runDistanceLimit
+number<float>
+In the units of the account (km or miles)
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+read-only
+assignedDriverReference
+string
+assignedDriverName
+string
+read-only
+territoriesReferences
+array[string]
+comment
+string
+manufacturer
+string
+VIN
+string
+isStandDown
+boolean
+isArchived
+boolean
+color
+string
+The color in RGB HEX format with a leading "#"
+>= 7 characters
+<= 7 characters
+Example:
+#FF00AA
+
+DriverDetails
+A model containing all driver details
+{
+  "referenceNumber": "string",
+  "name": "string",
+  "comment": "string",
+  "telephone": "string",
+  "assignedVehicleReference": "string",
+  "assignedVehicleName": "string",
+  "costPerHour": 0,
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string",
+  "territories": [
+    "string"
+  ],
+  "startOfDayLocation": "DC",
+  "startOfDayAddress": "string",
+  "visitDistributionCentreStart": "TO_RELOAD",
+  "endOfDayLocation": "DC",
+  "endOfDayAddress": "string",
+  "visitDistributionCentreEnd": "NO",
+  "drivingLimit": 0,
+  "runDurationLimit": 0,
+  "dutyTimeLimit": 0,
+  "availability": {
+    "monday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "tuesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "wednesday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "thursday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "friday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "saturday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "sunday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "default": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    },
+    "holiday": {
+      "startDay": "SAME_DAY",
+      "startTime": "14:15:22Z",
+      "rigidStart": true,
+      "endDay": "SAME_DAY",
+      "endTime": "14:15:22Z"
+    }
+  }
+}
+referenceNumber
+string
+required
+name
+string
+required
+comment
+string
+telephone
+string
+assignedVehicleReference
+string
+assignedVehicleName
+string
+read-only
+costPerHour
+number<float>
+required
+>= 0
+Multiple of:
+0.01
+distributionCentreReference
+string
+required
+distributionCentreName
+string
+territories
+array[string]
+A list of territory references
+startOfDayLocation
+string
+Allowed values:
+DC
+ADDRESS
+Default:
+DC
+startOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreStart
+string
+Allowed values:
+NO
+TO_RELOAD
+WITH_DELIVERIES
+Default:
+TO_RELOAD
+endOfDayLocation
+string
+Allowed values:
+DC
+LAST_ORDER
+ADDRESS
+Default:
+DC
+endOfDayAddress
+string
+Required if startOfDayLocation = 'address'. Will be geocoded.
+visitDistributionCentreEnd
+string
+Allowed values:
+WITH_COLLECTIONS
+NO
+Default:
+NO
+drivingLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+runDurationLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+dutyTimeLimit
+integer
+In seconds. Can be null (the DC default is used if null)
+>= 0
+
+availability
+object
+When creating or updating a driver use the following rules: All fields are optional. Set default availability to apply to all non-specified days. Set specific days to override the default. If not default is set and a day is not set, it will have no availability.
+
+monday
+DriverAvailabilityDay
+A single day of driver availability
+
+tuesday
+DriverAvailabilityDay
+A single day of driver availability
+
+wednesday
+DriverAvailabilityDay
+A single day of driver availability
+
+thursday
+DriverAvailabilityDay
+A single day of driver availability
+
+friday
+DriverAvailabilityDay
+A single day of driver availability
+
+saturday
+DriverAvailabilityDay
+A single day of driver availability
+
+sunday
+DriverAvailabilityDay
+A single day of driver availability
+
+default
+DriverAvailabilityDay
+A single day of driver availability
+
+holiday
+DriverAvailabilityDay
+A single day of driver availability
+
+DriverAvailabilityDay
+A single day of driver availability
+{
+  "startDay": "SAME_DAY",
+  "startTime": "14:15:22Z",
+  "rigidStart": true,
+  "endDay": "SAME_DAY",
+  "endTime": "14:15:22Z"
+}
+startDay
+string
+Set PREVIOUS_DAY for the shift to begin on the previous day. SAME_DAY otherwise
+Allowed values:
+SAME_DAY
+PREVIOUS_DAY
+Default:
+SAME_DAY
+startTime
+string<time>
+Local time in ISO8601 format.
+rigidStart
+boolean
+Set to true to make the driver start exactly at start time, no later.
+endDay
+string
+SAME_DAY for same day, DAY_PLUS_1 next day, etc.
+Allowed values:
+SAME_DAY
+DAY_PLUS_1
+DAY_PLUS_2
+DAY_PLUS_3
+DAY_PLUS_4
+Default:
+SAME_DAY
+endTime
+string<time>
+Local time in ISO 8601 format
+
+DriverSummary
+{
+  "referenceNumber": "string",
+  "name": "string",
+  "assignedVehicleReference": "string",
+  "assignedVehicleName": "string",
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string"
+}
+referenceNumber
+string
+name
+string
+assignedVehicleReference
+string
+assignedVehicleName
+string
+read-only
+distributionCentreReference
+string
+distributionCentreName
+string
+
+OrderDetails
+A model that represents details of an order. Can be used to read, create and modify orders
+{
+  "referenceNumber": "string",
+  "consignmentReference": "string",
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string",
+  "task": "DELIVERY",
+  "priority": "NORMAL",
+  "vehicleRequirements": [
+    "string"
+  ],
+  "additionalInstructions": "string",
+  "clientName": "string",
+  "contactPerson": "string",
+  "contactNumber": "string",
+  "contactEmail": "user@example.com",
+  "additionalContactEmails": [
+    "user@example.com"
+  ],
+  "customerLocation": {
+    "referenceNumber": "string",
+    "name": "string",
+    "address": "string",
+    "latitude": 0,
+    "longitude": 0,
+    "w3wAddress": "///rival.mirror.helps"
+  },
+  "notificationPreferences": {
+    "allowSMS": true,
+    "allowEmail": true
+  },
+  "territoryReference": "territoryRef",
+  "stopSequence": "ANY",
+  "timeWindows": [
+    {
+      "start": "2019-08-24T14:15:22Z",
+      "end": "2019-08-24T14:15:22Z"
+    }
+  ],
+  "orderDate": "2023-03-01",
+  "capacity1": 0,
+  "capacity2": 0,
+  "operationDuration": 0,
+  "customFields": {},
+  "orderItems": [
+    {
+      "itemReferenceNumber": "string",
+      "orderReferenceNumber": "string",
+      "name": "string",
+      "description": "string",
+      "barcode": "string",
+      "status": "CHECKED",
+      "rejectReason": "string",
+      "rejectComment": "string",
+      "pricePerUnit": 0,
+      "plannedQuantity": 0,
+      "factQuantity": 0,
+      "totalAmount": 0,
+      "height": 0,
+      "width": 0,
+      "length": 0,
+      "weight": 0,
+      "volume": 0
+    }
+  ],
+  "price": 10
+}
+referenceNumber
+string
+consignmentReference
+string
+To streamline the planning process, Pickup and Delivery orders can be associated through a unique consignmentReference, establishing a 1:1 relationship between a delivery and collection task.
+>= 0 characters
+<= 255 characters
+distributionCentreReference
+string
+distributionCentreName
+string
+read-only
+task
+string
+Allowed values:
+COLLECTION
+DELIVERY
+Default:
+DELIVERY
+priority
+string
+Allowed values:
+NORMAL
+MEDIUM
+HIGH
+Default:
+NORMAL
+vehicleRequirements
+array[string]
+references of required vehicle requirements.
+additionalInstructions
+string
+clientName
+string
+contactPerson
+string
+contactNumber
+string
+contactEmail
+string<email>
+additionalContactEmails
+array[string<email>]
+Additional emails for order notifications
+<= 255 items
+
+customerLocation
+object
+When creating an order via API it always creates an Landmark object. If you want to create a Customer location you need to create it via /locations endpoint and then pass its reference number in order creation step
+referenceNumber
+string
+If specified, none of the other fields of CL are mandatory. Will try to find the location by reference and fail if not found.Show all...
+name
+string
+address
+string
+latitude
+number
+longitude
+number
+w3wAddress
+string
+<= 256 characters
+Example:
+///rival.mirror.helps
+Match pattern:
+^/*[^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+[.｡。･・︒។։။۔።।][^0-9`~!@#$%^&*()+\-_=\]\[{}\\|'<,.>?/";:£§º©®\s]+$
+
+notificationPreferences
+object
+If not set, true is assumed for both.
+allowSMS
+boolean
+allowEmail
+boolean
+territoryReference
+string
+read-only
+If order belongs to territory, this field will contain the reference of that territory
+<= 255 characters
+Example:
+territoryRef
+stopSequence
+string
+Allowed values:
+ANY
+FIRST
+LAST
+Default:
+ANY
+
+timeWindows
+array[TimeWindow]
+You can provide either orderDate or exact Time Windows if TimeWindows is set orderDate will be ignored
+start
+string<date-time>
+end
+string<date-time>
+orderDate
+string<date>
+write-only
+You can provide either orderDate or exact Time Windows if timeWindows is set orderDate will be ignored Setting an orderDate will create a order with default account time windows
+Example:
+2023-03-01
+capacity1
+number
+capacity2
+number
+operationDuration
+integer
+In whole seconds
+>= 0
+customFields
+object
+On object containing a key-value pair for each custom field. The tech name is used as a key.
+
+orderItems
+array[OrderItem]
+An object that represents an order item.
+>= 0 items
+<= 500 items
+itemReferenceNumber
+string
+orderReferenceNumber
+string
+name
+string
+description
+string
+barcode
+string
+status
+string
+Allowed values:
+CHECKED
+UNCHECKED
+REJECTED
+rejectReason
+string
+rejectComment
+string
+pricePerUnit
+number
+plannedQuantity
+integer
+factQuantity
+integer
+totalAmount
+number
+height
+number<float>
+>= 0
+width
+number<float>
+>= 0
+length
+number<float>
+>= 0
+weight
+number<float>
+>= 0
+volume
+number<float>
+>= 0
+price
+number<double>
+>= 0
+Example:
+10
+
+
+VehicleSummary
+A lightweight object containing basic vehicle detials - used in list views.
+{
+  "referenceNumber": "string",
+  "name": "string",
+  "capacity1": -3.402823669209385e+38,
+  "capacity2": -3.402823669209385e+38,
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string",
+  "assignedDriverReference": "string",
+  "assignedDriverName": "string"
+}
+referenceNumber
+string
+Called External ID in UI
+name
+string
+The default name of the vehicle
+capacity1
+number<float>
+Multiple of:
+0.001
+capacity2
+number<float>
+Multiple of:
+0.001
+distributionCentreReference
+string
+distributionCentreName
+string
+read-only
+assignedDriverReference
+string
+assignedDriverName
+string
+read-only
+
+GeoLocation
+A model representing a certain location on the map. Depending on which context is may be used it, it may or may not have all the fields listed.
+{
+  "address": "string",
+  "lat": "string",
+  "lon": "string",
+  "postcode": "string"
+}
+address
+string
+lat
+string
+lon
+string
+postcode
+string
+
+OrderSummary
+A lightweight object describing basic order details. Used in list methods.
+{
+  "referenceNumber": "string",
+  "consignmentReference": "string",
+  "distributionCentreReference": "string",
+  "distributionCentreName": "string",
+  "task": "DELIVERY",
+  "priority": "NORMAL",
+  "clientName": "string",
+  "contactPerson": "string",
+  "customerLocation": {
+    "referenceNumber": "string",
+    "name": "string",
+    "address": "string",
+    "latitude": 0,
+    "longitude": 0,
+    "w3wAddress": "string"
+  },
+  "capacity1": 0,
+  "capacity2": 0,
+  "operationDuration": 0,
+  "customFields": {
+    "": "string"
+  },
+  "status": "UNALLOCATED",
+  "statusLastUpdated": "2019-08-24T14:15:22Z",
+  "widgetTrackingDetails": {
+    "trackingId": "string",
+    "externalTrackingUri": "http://example.com"
+  }
+}
+referenceNumber
+string
+consignmentReference
+string
+Used to group P&D orders in pairs. If set - assumes consignmentLinkType = "PickupAndDeliver".
+distributionCentreReference
+string
+distributionCentreName
+string
+read-only
+task
+string
+Allowed values:
+DELIVERY
+COLLECTION
+Default:
+DELIVERY
+priority
+string
+Allowed values:
+NORMAL
+MEDIUM
+HIGH
+clientName
+string
+contactPerson
+string
+
+customerLocation
+object
+When creating an order via API it always creates a customer location.
+referenceNumber
+string
+If specified, none of the other fields of CL are mandatory. Will try to find the location by reference and fail if not found.Show all...
+name
+string
+address
+string
+latitude
+number
+longitude
+number
+w3wAddress
+string
+What3Words address of this location. Field populated only when location was created with w3w address
+capacity1
+number
+capacity2
+number
+operationDuration
+integer
+In whole seconds
+>= 0
+
+customFields
+object
+read-only
+Sent only if expand parameter includes ATTRIBUTES
+string
+status
+string
+read-only
+Sent only if expand parameter includes STATUSES
+Allowed values:
+UNALLOCATED
+ALLOCATED
+LOCKED
+SENDING
+SENT
+ACCEPTED
+DELIVERED
+COMPLETED
+FAILED
+DRIVING
+ARRIVED
+IN_PROGRESS
+WORK_COMPLETED
+DEPARTED
+SUSPENDED
+statusLastUpdated
+string<date-time>
+read-only
+Sent only if expand parameter includes STATUSES
+
+widgetTrackingDetails
+WidgetTrackingDetails
+Object that contains an order tracking ID and URL from the tracking widget. Available in /orders only when expand parameter WIDGET is set.
+trackingId
+string
+read-only
+Alphanumeric id for order tracking
+externalTrackingUri
+string<uri>
+read-only
+URI to access the tracking information if customer domain is not configured
+
+PagingLinks
+API implements pagination via links in this object. If there is a "next" link - you can call API via that link to get the next page of results. If you are on the last page, there will be no "next" link in this object.
+{
+  "prev": "/orders?offset=20",
+  "next": "/orders?offset=40"
+}
+prev
+string
+read-only
+Relative URL of the previous page of results. Use this to navigate back to the previous page.Show all...
+Example:
+/orders?offset=20
+next
+string
+read-only
+Relative URL of the next page of results. Use this to navigate to the next page.Show all...
+Example:
+/orders?offset=40
+
+ErrorResponse
+{
+  "errors": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ],
+  "warnings": [
+    {
+      "code": "string",
+      "name": "string",
+      "details": "string",
+      "field": "string"
+    }
+  ]
+}
+
+errors
+array[Error]
+A model to represent an error that may be included a response to indicate a reason why a request cannot be processed or failed.
+code
+string
+The error code.
+name
+string
+The name of the error. The names of errors may change so please use the error code in your integration's code.
+details
+string
+Any additional relevant details, human-readable.
+field
+string
+(optional) The name of the field the error relates to.
+
+warnings
+array[Warning]
+A model to represent a warning that may be included a response to indicate that some non-critical issues were found with the request. Request may still be processed, but the user will be notified.
+code
+string
+An integer warning code
+name
+string
+A text description of a warning. Please do not use it in your client's code as the name can change. User warning codes instead - they will not change.
+details
+string
+Any additional details that the warning message may carry.
+field
+string
+(optional) The name of the data field the warning is related to.
+
+DCSummary
+{
+  "referenceNumber": "string",
+  "name": "string",
+  "address": "string"
+}
+referenceNumber
+string
+name
+string
+address
+string
+The address of the distribution centre.
+
+Allocation
+An object that represents an order in a schedule.
+{
+  "orderReference": "string",
+  "customerLocationName": "string",
+  "customerLocationAddress": "string",
+  "latitude": 0,
+  "longitude": 0,
+  "plannedDrivingStartTime": "2019-08-24T14:15:22Z",
+  "plannedArrivalTime": "2019-08-24T14:15:22Z",
+  "plannedCompletionTime": "2019-08-24T14:15:22Z",
+  "status": "string",
+  "sequenceNumber": 0,
+  "task": "DELIVERY"
+}
+orderReference
+string
+customerLocationName
+string
+customerLocationAddress
+string
+latitude
+number
+longitude
+number
+plannedDrivingStartTime
+string<date-time>
+plannedArrivalTime
+string<date-time>
+plannedCompletionTime
+string<date-time>
+status
+string
+sequenceNumber
+integer
+Which sequence number this order has in the run
+task
+string
+Type of executed task
+Allowed values:
+DELIVERY
+COLLECTION
+Default:
+DELIVERY
+Example:
+DELIVERY
+
+
+Run
+An object representing one run.
+{
+  "plannedLoadingStartTime": "2019-08-24T14:15:22Z",
+  "plannedDepartureTime": "2019-08-24T14:15:22Z",
+  "plannedReturnStartTime": "2019-08-24T14:15:22Z",
+  "plannedCompletionTime": "2019-08-24T14:15:22Z",
+  "totalOrders": 0,
+  "totalDuration": 0,
+  "totalDistance": 0,
+  "totalCapacity1": 0,
+  "totalCapacity2": 0,
+  "allocations": [
+    {
+      "orderReference": "string",
+      "customerLocationName": "string",
+      "customerLocationAddress": "string",
+      "latitude": 0,
+      "longitude": 0,
+      "plannedDrivingStartTime": "2019-08-24T14:15:22Z",
+      "plannedArrivalTime": "2019-08-24T14:15:22Z",
+      "plannedCompletionTime": "2019-08-24T14:15:22Z",
+      "status": "string",
+      "sequenceNumber": 0,
+      "task": "DELIVERY"
+    }
+  ],
+  "isLocked": true,
+  "reference": "4381e86f099f4bce922c2485c2398aa7",
+  "runNumber": 0,
+  "totalDeliveries": 0,
+  "totalCollections": 0
+}
+plannedLoadingStartTime
+string<date-time>
+plannedDepartureTime
+string<date-time>
+plannedReturnStartTime
+string<date-time>
+plannedCompletionTime
+string<date-time>
+totalOrders
+integer
+totalDuration
+integer
+The duration of time between the start and the end of the run in seconds
+totalDistance
+number
+total distance either in km or miles depending on account settings
+totalCapacity1
+number
+the total used capacity for capacity 1
+totalCapacity2
+number
+The total used capacity for capacity 2
+
+allocations
+array[Allocation]
+An object that represents an order in a schedule.
+orderReference
+string
+customerLocationName
+string
+customerLocationAddress
+string
+latitude
+number
+longitude
+number
+plannedDrivingStartTime
+string<date-time>
+plannedArrivalTime
+string<date-time>
+plannedCompletionTime
+string<date-time>
+status
+string
+sequenceNumber
+integer
+Which sequence number this order has in the run
+task
+string
+Type of executed task
+Allowed values:
+DELIVERY
+COLLECTION
+Default:
+DELIVERY
+Example:
+DELIVERY
+isLocked
+boolean
+reference
+string
+A reference of this particular run for further use in API. We recommend that you do not store the reference long-term as some planning actions can lead to a different run with a different reference forming in place of the old one.
+Example:
+4381e86f099f4bce922c2485c2398aa7
+runNumber
+integer
+Sequence number of this run in Schedule
+totalDeliveries
+integer
+read-only
+Total number of deliviries in the run
+>= 0
+totalCollections
+integer
+read-only
+Total collections in the run
+>= 0
+
+
+Schedule
+An object representing a schedule, which is a collection of driver shifts
+{
+  "driverShifts": [
+    {
+      "driverName": "string",
+      "driverReference": "string",
+      "vehicleName": "string",
+      "vehicleReference": "string",
+      "shiftDate": "2019-08-24",
+      "shiftStartTime": "2019-08-24T14:15:22Z",
+      "shiftEndTime": "2019-08-24T14:15:22Z",
+      "runs": [
+        {}
+      ],
+      "totalWorkingTime": 0,
+      "totalDrivingTime": 0,
+      "totalDistance": 0
+    }
+  ]
+}
+
+driverShifts
+array[Shift]
+driverName
+string
+driverReference
+string
+vehicleName
+string
+vehicleReference
+string
+shiftDate
+string<date>
+shiftStartTime
+string<date-time>
+shiftEndTime
+string<date-time>
+
+runs
+array[Run]
+An object representing one run.
+totalWorkingTime
+integer
+The total time the driver works in that shift in seconds.
+totalDrivingTime
+integer
+The total time the driver is driving in the shift, in seconds.
+totalDistance
+number
+The total distance driven in the shift. In kilometers or miles, depending on the account settings.
+
+Shift
+An object representing a driver shift.
+{
+  "driverName": "string",
+  "driverReference": "string",
+  "vehicleName": "string",
+  "vehicleReference": "string",
+  "shiftDate": "2019-08-24",
+  "shiftStartTime": "2019-08-24T14:15:22Z",
+  "shiftEndTime": "2019-08-24T14:15:22Z",
+  "runs": [
+    {
+      "plannedLoadingStartTime": "2019-08-24T14:15:22Z",
+      "plannedDepartureTime": "2019-08-24T14:15:22Z",
+      "plannedReturnStartTime": "2019-08-24T14:15:22Z",
+      "plannedCompletionTime": "2019-08-24T14:15:22Z",
+      "totalOrders": 0,
+      "totalDuration": 0,
+      "totalDistance": 0,
+      "totalCapacity1": 0,
+      "totalCapacity2": 0,
+      "allocations": [
+        {}
+      ],
+      "isLocked": true,
+      "reference": "4381e86f099f4bce922c2485c2398aa7",
+      "runNumber": 0,
+      "totalDeliveries": 0,
+      "totalCollections": 0
+    }
+  ],
+  "totalWorkingTime": 0,
+  "totalDrivingTime": 0,
+  "totalDistance": 0
+}
+driverName
+string
+driverReference
+string
+vehicleName
+string
+vehicleReference
+string
+shiftDate
+string<date>
+shiftStartTime
+string<date-time>
+shiftEndTime
+string<date-time>
+
+runs
+array[Run]
+An object representing one run.
+plannedLoadingStartTime
+string<date-time>
+plannedDepartureTime
+string<date-time>
+plannedReturnStartTime
+string<date-time>
+plannedCompletionTime
+string<date-time>
+totalOrders
+integer
+totalDuration
+integer
+The duration of time between the start and the end of the run in seconds
+totalDistance
+number
+total distance either in km or miles depending on account settings
+totalCapacity1
+number
+the total used capacity for capacity 1
+totalCapacity2
+number
+The total used capacity for capacity 2
+
+allocations
+array[Allocation]
+An object that represents an order in a schedule.
+isLocked
+boolean
+reference
+string
+A reference of this particular run for further use in API. We recommend that you do not store the reference long-term as some planning actions can lead to a different run with a different reference forming in place of the old one.
+Example:
+4381e86f099f4bce922c2485c2398aa7
+runNumber
+integer
+Sequence number of this run in Schedule
+totalDeliveries
+integer
+read-only
+Total number of deliviries in the run
+>= 0
+totalCollections
+integer
+read-only
+Total collections in the run
+>= 0
+totalWorkingTime
+integer
+The total time the driver works in that shift in seconds.
+totalDrivingTime
+integer
+The total time the driver is driving in the shift, in seconds.
+totalDistance
+number
+The total distance driven in the shift. In kilometers or miles, depending on the account settings.
+
+JsonPatchCommand
+{
+  "op": "replace",
+  "path": "/clientName",
+  "value": "Some Name"
+}
+op
+string
+required
+Allowed values:
+add
+remove
+replace
+copy
+move
+test
+Example:
+replace
+path
+string
+required
+Example:
+/clientName
+value
+string
+required
+Example:
+Some Name
+
+
+ScheduleImport
+{
+  "schedules": [
+    {
+      "driverReference": "string",
+      "vehicleReference": "string",
+      "orderReferences": [
+        null
+      ],
+      "resequence": false
+    }
+  ],
+  "resequenceModifiedRuns": false
+}
+
+schedules
+array[ScheduleImportRecord]
+Array of schedules to import
+driverReference
+string or null
+vehicleReference
+string or null
+orderReferences
+array[string]
+required
+resequence
+boolean
+Default:
+false
+resequenceModifiedRuns
+boolean
+If this setting is true - when an order is already allocated to an existing run - it will be automatically unallocated and the run will be re-sequenced
+Default:
+false
+
+ScheduleImportRecord
+Already planned and sequenced schedule for driver or vehicle Either driver reference or vehicle reference is required
+{
+  "driverReference": "string",
+  "vehicleReference": "string",
+  "orderReferences": [
+    "string"
+  ],
+  "resequence": false
+}
+driverReference
+string or null
+vehicleReference
+string or null
+orderReferences
+array[string]
+required
+resequence
+boolean
+Default:
+false
